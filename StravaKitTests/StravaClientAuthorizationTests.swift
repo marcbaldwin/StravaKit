@@ -1,5 +1,5 @@
 import XCTest
-import Foundation
+@testable import StravaKit
 
 class StravaClientAuthorizationTests: BaseStravaClientTests {
 

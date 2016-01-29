@@ -1,6 +1,6 @@
-import Foundation
 import SwiftyJSON
 import XCTest
+@testable import StravaKit
 
 class JSONActivityEtensionTests: XCTestCase {
 

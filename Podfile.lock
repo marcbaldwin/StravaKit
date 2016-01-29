@@ -1,0 +1,16 @@
+PODS:
+  - Alamofire (3.1.5)
+  - Nimble (3.0.0)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - Nimble (= 3.0.0)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
