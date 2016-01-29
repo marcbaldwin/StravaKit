@@ -1,4 +1,5 @@
 import XCTest
+import Nimble
 @testable import StravaKit
 
 class StravaClientActivitiesTests: BaseStravaClientTests {
@@ -9,7 +10,6 @@ class StravaClientActivitiesTests: BaseStravaClientTests {
     }
 
     func testShouldReturnActivitiesBetweenDateRange() {
-
         let expectation = expectationWithDescription("")
 
         let dateFormatter = "yyyy:MM:d".dateFormatter()
@@ -17,27 +17,21 @@ class StravaClientActivitiesTests: BaseStravaClientTests {
         let weekEnd = dateFormatter.dateFromString("2015:05:31")!
 
         stravaClient.activitiesForLocalAthlete(weekBeginning, to: weekEnd, success: { activities in
-            XCTAssertEqual(2, activities.count)
-            
+            expect(activities.count).to(equal(2))
             expectation.fulfill()
         }, failure: failOnError())
 
-        waitForExpectationsWithTimeout(5) { error in
-
-        }
+        waitForExpectations()
     }
 
     func testShouldReturnActivityStreamForActivity() {
-
         let expectation = expectationWithDescription("")
 
         stravaClient.activityStreamForActivityWithId(326040145, types: [StreamType.Distance, .Altitude], success: { activityStream in
-            XCTAssertNotNil(activityStream)
+            expect(activityStream).toNot(beNil())
             expectation.fulfill()
         }, failure: failOnError())
 
-        waitForExpectationsWithTimeout(5) { error in
-
-        }
+        waitForExpectations()
     }
 }

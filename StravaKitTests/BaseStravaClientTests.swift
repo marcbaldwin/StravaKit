@@ -13,9 +13,11 @@ class BaseStravaClientTests: XCTestCase {
 
 extension BaseStravaClientTests {
 
+    func waitForExpectations() {
+        waitForExpectationsWithTimeout(1) { _ in }
+    }
+
     func failOnError() -> (NSError) -> Void {
-        return { _ in
-            XCTFail()
-        }
+        return { _ in XCTFail() }
     }
 }
