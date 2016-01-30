@@ -21,9 +21,6 @@ extension JSON {
         activity.localTimeZone = NSTimeZone(name: self["timezone"].stringValue.characters.split { $0 == " "}.map(String.init)[1])
         activity.startCoordinate = self["start_latlng"].coordinate
         activity.endCoordinate = self["end_latlng"].coordinate
-        activity.locationCity = self["location_city"].string!
-        activity.locationState = self["location_state"].string
-        activity.locationCountry = self["location_country"].string!
         activity.achievementCount = self["achievement_count"].int!
         activity.kudosCount = self["kudos_count"].int!
         activity.commentCount = self["comment_count"].int!

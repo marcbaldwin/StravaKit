@@ -19,10 +19,6 @@ class Activity {
     var startCoordinate: Coordinate!
     var endCoordinate: Coordinate!
 
-    var locationCity: String!
-    var locationState: String?
-    var locationCountry: String!
-
     var achievementCount: Int!
     var kudosCount: Int!
     var commentCount: Int!
