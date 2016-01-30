@@ -1,48 +1,21 @@
-import Foundation
-import Alamofire
 import SwiftyJSON
-
-private let activitiesTemplate = "https://www.strava.com/api/v3/athlete/activities"
-private let streamsTemplate = "https://www.strava.com/api/v3/activities/%d/streams/%@"
-
-private let MaxPageSize = 200
 
 extension StravaClient {
 
-    func activitiesForLocalAthlete(from: NSDate, to: NSDate, success: ([Activity]) -> (), failure: ErrorHandler) {
-
-        let parameters = [
-            "before" : to.timeIntervalSince1970,
-            "after" : from.timeIntervalSince1970
-        ]
-
-        performGetRequest(activitiesTemplate, parameters: parameters, success: { json in
-
-            var activities = [Activity]()
-            if let jsonArray = JSON(json).array {
-                for activityJSON in jsonArray {
-                    activities.append(activityJSON.activity)
-                }
-            }
-            success(activities)
-
-        }) { error in
-            failure(error)
-        }
+    func activitiesForLocalAthlete(from: NSDate, to: NSDate) -> Request<[Activity]> {
+        let parameters = self.parameters()
+            .add("before", to.timeIntervalSince1970)
+            .add("after", from.timeIntervalSince1970)
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
     }
 
-    func activityStreamForActivityWithId(id: Int, types: [StreamType], success: (ActivityStream) -> (), failure: ErrorHandler) {
+    func activities(page page: Int, pageSize: Int) -> Request<[Activity]> {
+        let parameters = self.parameters().add("page", page).add("per_page", pageSize)
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
+    }
 
-        let typeString = types.reduce("") { $0.0 + $0.1.rawValue + "," }
-        let url = streamsTemplate.format(id, typeString)
-
-        performGetRequest(url, parameters: ["resolution" : "low"], success: { json in
-
-            let json = JSON(json)
-            success(json.activityStream)
-
-        }) { error in
-            failure(error)
-        }
+    func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<ActivityStream> {
+        let parameters = self.parameters().add("resolution", "low")
+        return Request(url: api.activityStream(id, types: types), parameters: parameters) { JSON($0).activityStream }
     }
 }

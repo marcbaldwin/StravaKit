@@ -1,4 +1,3 @@
-import Foundation
 import Alamofire
 import SwiftyJSON
 
@@ -14,7 +13,7 @@ class StravaClient {
 
     var localAthlete: Athlete?
 
-    // Private
+    let api = StravaTemplate()
     private let authorizeURLTemplate = "https://www.strava.com/oauth/authorize?client_id=%@&response_type=code&redirect_uri=%@&state=%@"
     private let tokenExchangeTemplate = "https://www.strava.com/oauth/token"
 
@@ -60,6 +59,10 @@ class StravaClient {
                 else {
                     success(response.result.value!)
                 }
-        }
+            }
+    }
+
+    func parameters() -> Parameters {
+        return Parameters().add("access_token", accessToken)
     }
 }

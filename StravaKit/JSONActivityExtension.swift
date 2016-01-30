@@ -1,4 +1,3 @@
-import Foundation
 import SwiftyJSON
 
 extension JSON {
@@ -42,5 +41,15 @@ extension JSON {
         activity.maxHeartRate = self["max_heartrate"].floatValue
 
         return activity
+    }
+
+    var activities: [Activity] {
+        var activities = [Activity]()
+        if let jsonArray = array {
+            for activityJSON in jsonArray {
+                activities.append(activityJSON.activity)
+            }
+        }
+        return activities
     }
 }
