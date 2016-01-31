@@ -1,51 +1,59 @@
 import Alamofire
 import SwiftyJSON
 
-let RequestAccessState = "RequestAccessState"
-
 typealias ErrorHandler = (NSError) -> ()
 
 class StravaClient {
 
-    let clientId: String
-    let clientSecret: String
+    private let clientId: String
+    private let clientSecret: String
+    private let api = StravaTemplate()
+
     var accessToken: String!
-
-    var localAthlete: Athlete?
-
-    let api = StravaTemplate()
-    private let authorizeURLTemplate = "https://www.strava.com/oauth/authorize?client_id=%@&response_type=code&redirect_uri=%@&state=%@"
-    private let tokenExchangeTemplate = "https://www.strava.com/oauth/token"
 
     init(clientId: String, clientSecret: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret
     }
 
-    func requestAccessWithRedirectURL(url: String) {
-        let authorizeURL = authorizeURLTemplate.format(clientId, url, RequestAccessState)
-        UIApplication.sharedApplication().openURL(authorizeURL.URL!)
-    }
-
-    func handleRequestAccessCallbackWithURL(url: NSURL, success: ((Athlete) -> ())? = nil, failure: ErrorHandler? = nil) {
-
-        let parameters = [
-            "client_id" : clientId,
-            "client_secret" : clientSecret,
-            "code" : url.params["code"]!
-        ]
-
-        Alamofire
-            .request(.POST, tokenExchangeTemplate, parameters: parameters)
-            .responseJSON { response in
-                let json = JSON(response.data!)
-                self.accessToken = json["access_token"].string
-                self.localAthlete = json["athlete"].athlete
-                success?(self.localAthlete!)
-            }
-    }
-
-    func parameters() -> Parameters {
+    private func builder() -> Parameters {
         return Parameters().add("access_token", accessToken)
+    }
+}
+
+extension StravaClient { // MARK: Authorization
+
+    func requestAccessWithRedirectURL(url: String) {
+        UIApplication.sharedApplication().openURL(api.requestAccess(clientId: clientId, redirectUri: url).URL!)
+    }
+
+    func exchangeToken(url: NSURL) -> Request<(String, Athlete)> {
+        let parameters = Parameters()
+            .add("client_id", clientId)
+            .add("client_secret", clientSecret)
+            .add("code", url.params["code"]!)
+
+        return Request(method: .POST, url: api.exchangeToken(), parameters: parameters) { data in
+            let json = JSON(data)
+            return (json["access_token"].string!, json["athlete"].athlete)
+        }
+    }
+}
+
+extension StravaClient { // MARK: Activities
+
+    func activitiesForLocalAthlete(from: NSDate, to: NSDate) -> Request<[Activity]> {
+        let parameters = builder().add("before", to.timeIntervalSince1970).add("after", from.timeIntervalSince1970)
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
+    }
+
+    func activities(page page: Int, pageSize: Int) -> Request<[Activity]> {
+        let parameters = builder().add("page", page).add("per_page", pageSize)
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
+    }
+
+    func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<ActivityStream> {
+        let parameters = builder().add("resolution", "low")
+        return Request(url: api.activityStream(id, types: types), parameters: parameters) { JSON($0).activityStream }
     }
 }
