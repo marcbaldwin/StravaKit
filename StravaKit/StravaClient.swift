@@ -3,15 +3,16 @@ import SwiftyJSON
 
 typealias ErrorHandler = (NSError) -> ()
 
-class StravaClient {
+public class StravaClient {
 
     private let clientId: String
     private let clientSecret: String
     private let api = StravaTemplate()
 
     var accessToken: String!
+    var athlete: Athlete!
 
-    init(clientId: String, clientSecret: String) {
+    public init(clientId: String, clientSecret: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret
     }
@@ -21,39 +22,42 @@ class StravaClient {
     }
 }
 
-extension StravaClient { // MARK: Authorization
+public extension StravaClient { // MARK: Authorization
 
     func requestAccessWithRedirectURL(url: String) {
         UIApplication.sharedApplication().openURL(api.requestAccess(clientId: clientId, redirectUri: url).URL!)
     }
 
-    func exchangeToken(url: NSURL) -> Request<(String, Athlete)> {
+    func exchangeToken(url: NSURL) {
         let parameters = Parameters()
             .add("client_id", clientId)
             .add("client_secret", clientSecret)
             .add("code", url.params["code"]!)
 
-        return Request(method: .POST, url: api.exchangeToken(), parameters: parameters) { data in
-            let json = JSON(data)
-            return (json["access_token"].string!, json["athlete"].athlete)
-        }
+        Request<(String, Athlete)>(method: .POST, url: api.exchangeToken(), parameters: parameters) { json in
+                return (json["access_token"].string!, json["athlete"].athlete)
+            }
+            .onSuccess { accessToken, athlete in
+                self.accessToken = accessToken
+                self.athlete = athlete
+            }
     }
 }
 
-extension StravaClient { // MARK: Activities
+public extension StravaClient { // MARK: Activities
 
     func activitiesForLocalAthlete(from: NSDate, to: NSDate) -> Request<[Activity]> {
         let parameters = builder().add("before", to.timeIntervalSince1970).add("after", from.timeIntervalSince1970)
-        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
     }
 
     func activities(page page: Int, pageSize: Int) -> Request<[Activity]> {
         let parameters = builder().add("page", page).add("per_page", pageSize)
-        return Request(url: api.athleteAcitvities(), parameters: parameters) { JSON($0).activities }
+        return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
     }
 
     func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<ActivityStream> {
         let parameters = builder().add("resolution", "low")
-        return Request(url: api.activityStream(id, types: types), parameters: parameters) { JSON($0).activityStream }
+        return Request(url: api.activityStream(id, types: types), parameters: parameters) { $0.activityStream }
     }
 }

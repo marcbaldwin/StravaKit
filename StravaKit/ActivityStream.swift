@@ -1,6 +1,6 @@
 import Foundation
 
-class ActivityStream {
+public class ActivityStream {
 
     let dataPoints: [DataPoint]
 

@@ -1,6 +1,6 @@
 import Foundation
 
-class Activity {
+public class Activity {
 
     var id: Int!
     var name: String!

@@ -1,6 +1,6 @@
 import Foundation
 
-class Athlete {
+public class Athlete {
 
     var firstName: String!
     var lastName: String!

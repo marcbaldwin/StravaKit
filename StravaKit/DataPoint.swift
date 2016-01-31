@@ -1,7 +1,7 @@
 import Foundation
 import CoreLocation
 
-enum StreamType: String {
+public enum StreamType: String {
     case LatLng = "latlng"
     case Distance = "distance"
     case Altitude = "altitude"

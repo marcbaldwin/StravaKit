@@ -1,18 +1,22 @@
 import Alamofire
+import SwiftyJSON
 
-class Request<T> {
+public class Request<T> {
 
     private let method: Alamofire.Method
     private let url: String
     private let parameters: Parameters
-    private let transformer: (AnyObject) -> T
+    private let transformer: (JSON) -> T
 
-    init(method: Alamofire.Method = .GET, url: String, parameters: Parameters, transformer: (AnyObject) -> T) {
+    init(method: Alamofire.Method = .GET, url: String, parameters: Parameters, transformer: (JSON) -> T) {
         self.method = method
         self.url = url
         self.parameters = parameters
         self.transformer = transformer
     }
+}
+
+public extension Request {
 
     func onSuccess(handler: (T) -> ()) {
         Alamofire.request(method, url, parameters: parameters.build()).responseJSON { response in
@@ -20,7 +24,7 @@ class Request<T> {
                 print(error)
             }
             else {
-                handler(self.transformer(response.result.value!))
+                handler(self.transformer(JSON(response.result.value!)))
             }
         }
     }

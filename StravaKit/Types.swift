@@ -1,11 +1,11 @@
 import Foundation
 import CoreLocation
 
-typealias Distance = Float
-typealias Speed = Float
-typealias Time = NSTimeInterval
-typealias Coordinate = CLLocationCoordinate2D
-typealias Degrees = CLLocationDegrees
+public typealias Distance = Float
+public typealias Speed = Float
+public typealias Time = NSTimeInterval
+public typealias Coordinate = CLLocationCoordinate2D
+public typealias Degrees = CLLocationDegrees
 
 extension CLLocationCoordinate2D {
 
