@@ -45,23 +45,6 @@ class StravaClient {
             }
     }
 
-    func performGetRequest(url: String, parameters: [String : AnyObject]?, success: (AnyObject) -> (), failure: ErrorHandler) {
-
-        var parametersExpanded = parameters == nil ? [String : AnyObject]() : parameters!
-        parametersExpanded["access_token"] = accessToken
-
-        Alamofire
-            .request(.GET, url, parameters: parametersExpanded)
-            .responseJSON { response in
-                if let error = response.result.error {
-                    failure(error)
-                }
-                else {
-                    success(response.result.value!)
-                }
-            }
-    }
-
     func parameters() -> Parameters {
         return Parameters().add("access_token", accessToken)
     }
