@@ -35,7 +35,8 @@
 		A027FE901C5AE88B00943798 /* NSURLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE8F1C5AE88B00943798 /* NSURLExtensions.swift */; };
 		A027FE931C5AE9A300943798 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE921C5AE9A300943798 /* IntExtensions.swift */; };
 		A05CD3621C5C39EA0051D962 /* StravaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CD3611C5C39EA0051D962 /* StravaRequest.swift */; };
-		A05CD3641C5D7C380051D962 /* StravaTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CD3631C5D7C380051D962 /* StravaTemplate.swift */; };
+		A05CD3641C5D7C380051D962 /* StravaTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CD3631C5D7C380051D962 /* StravaTemplates.swift */; };
+		A05CD3681C5E55250051D962 /* StravaAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CD3671C5E55250051D962 /* StravaAuthorizer.swift */; };
 		A06A2E931C5C2E810009D5E4 /* activities_1_2.json in Resources */ = {isa = PBXBuildFile; fileRef = A06A2E921C5C2E810009D5E4 /* activities_1_2.json */; };
 		B7A7E31AA283FC4E93521ADF /* Pods_StravaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B881BBD486C8E209A49203 /* Pods_StravaKit.framework */; };
 /* End PBXBuildFile section */
@@ -83,7 +84,8 @@
 		A027FE8F1C5AE88B00943798 /* NSURLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLExtensions.swift; sourceTree = "<group>"; };
 		A027FE921C5AE9A300943798 /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		A05CD3611C5C39EA0051D962 /* StravaRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaRequest.swift; sourceTree = "<group>"; };
-		A05CD3631C5D7C380051D962 /* StravaTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaTemplate.swift; sourceTree = "<group>"; };
+		A05CD3631C5D7C380051D962 /* StravaTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaTemplates.swift; sourceTree = "<group>"; };
+		A05CD3671C5E55250051D962 /* StravaAuthorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaAuthorizer.swift; sourceTree = "<group>"; };
 		A06A2E921C5C2E810009D5E4 /* activities_1_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activities_1_2.json; sourceTree = "<group>"; };
 		A35D70A5A46215A52FDD2867 /* Pods_StravaKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StravaKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AF41EDA68E822EED9A47D6 /* Pods-StravaKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StravaKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StravaKit/Pods-StravaKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,9 +183,10 @@
 		A027FE5E1C5AE2B100943798 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				A05CD3671C5E55250051D962 /* StravaAuthorizer.swift */,
 				A027FE5F1C5AE2BD00943798 /* StravaClient.swift */,
 				A05CD3611C5C39EA0051D962 /* StravaRequest.swift */,
-				A05CD3631C5D7C380051D962 /* StravaTemplate.swift */,
+				A05CD3631C5D7C380051D962 /* StravaTemplates.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -497,8 +500,9 @@
 				A027FE5C1C5AE29E00943798 /* DataPoint.swift in Sources */,
 				A027FE931C5AE9A300943798 /* IntExtensions.swift in Sources */,
 				A027FE621C5AE2BD00943798 /* StravaClient.swift in Sources */,
-				A05CD3641C5D7C380051D962 /* StravaTemplate.swift in Sources */,
+				A05CD3641C5D7C380051D962 /* StravaTemplates.swift in Sources */,
 				A027FE5D1C5AE29E00943798 /* Types.swift in Sources */,
+				A05CD3681C5E55250051D962 /* StravaAuthorizer.swift in Sources */,
 				A05CD3621C5C39EA0051D962 /* StravaRequest.swift in Sources */,
 				A027FE8C1C5AE7F000943798 /* StringExtensions.swift in Sources */,
 				A027FE5B1C5AE29E00943798 /* Athlete.swift in Sources */,

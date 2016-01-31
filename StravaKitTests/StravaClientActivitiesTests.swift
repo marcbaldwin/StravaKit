@@ -8,7 +8,7 @@ class StravaClientActivitiesTests: BaseStravaClientTests {
 
     override func setUp() {
         super.setUp()
-        expectation = expectationWithDescription("")
+        expectation = createExpectation()
     }
 
     func testShouldReturnActivitiesBetweenDateRange() {

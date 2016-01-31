@@ -1,47 +1,8 @@
-import Alamofire
-import SwiftyJSON
 
-typealias ErrorHandler = (NSError) -> ()
+public struct StravaClient {
 
-public class StravaClient {
-
-    private let clientId: String
-    private let clientSecret: String
-    private let api = StravaTemplate()
-
-    var accessToken: String!
-    var athlete: Athlete!
-
-    public init(clientId: String, clientSecret: String) {
-        self.clientId = clientId
-        self.clientSecret = clientSecret
-    }
-
-    private func builder() -> Parameters {
-        return Parameters().add("access_token", accessToken)
-    }
-}
-
-public extension StravaClient { // MARK: Authorization
-
-    func requestAccessWithRedirectURL(url: String) {
-        UIApplication.sharedApplication().openURL(api.requestAccess(clientId: clientId, redirectUri: url).URL!)
-    }
-
-    func exchangeToken(url: NSURL) {
-        let parameters = Parameters()
-            .add("client_id", clientId)
-            .add("client_secret", clientSecret)
-            .add("code", url.params["code"]!)
-
-        Request<(String, Athlete)>(method: .POST, url: api.exchangeToken(), parameters: parameters) { json in
-                return (json["access_token"].string!, json["athlete"].athlete)
-            }
-            .onSuccess { accessToken, athlete in
-                self.accessToken = accessToken
-                self.athlete = athlete
-            }
-    }
+    let accessToken: String
+    private let api = StravaApiTemplate()
 }
 
 public extension StravaClient { // MARK: Activities
@@ -59,5 +20,12 @@ public extension StravaClient { // MARK: Activities
     func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<Stream> {
         let parameters = builder().add("resolution", "low")
         return Request(url: api.activityStream(id, types: types), parameters: parameters) { $0.activityStream }
+    }
+}
+
+private extension StravaClient {
+
+    private func builder() -> Parameters {
+        return Parameters().add("access_token", accessToken)
     }
 }

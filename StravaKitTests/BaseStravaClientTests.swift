@@ -8,12 +8,15 @@ class BaseStravaClientTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        stravaClient = StravaClient(clientId: "6780", clientSecret: "4b33f695b8779a9789f82a43e4796804829de2e6")
-        stravaClient.accessToken = "464f7efa6615307e97ecf404cdbaeaff547f7d98"
+        stravaClient = StravaClient(accessToken: "464f7efa6615307e97ecf404cdbaeaff547f7d98")
     }
 }
 
-extension BaseStravaClientTests {
+extension XCTestCase {
+
+    func createExpectation() -> XCTestExpectation {
+        return expectationWithDescription("")
+    }
 
     func waitForExpectations() {
         waitForExpectationsWithTimeout(1) { _ in }
