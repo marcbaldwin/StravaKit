@@ -1,9 +1,8 @@
-import Foundation
 import SwiftyJSON
 
 extension JSON {
 
-    var activityStream: ActivityStream {
+    var activityStream: Stream {
 
         let coordinates = self.coodinates()
         let distances = dataArray("distance") as? [Distance]
@@ -24,7 +23,7 @@ extension JSON {
             dataPoints.append(dataPoint)
         }
 
-        return ActivityStream(dataPoints: dataPoints)
+        return dataPoints
     }
 
     private func dataArray(name: String) -> [AnyObject]? {
@@ -33,20 +32,7 @@ extension JSON {
     }
 
     private func coodinates() -> [Coordinate]? {
-        if let coordinatesAsJson = jsonWithType("latlng") {
-            var coordinates = [Coordinate]()
-
-            for coordinateAsJson in coordinatesAsJson.array! {
-                let coordinateAsArray = coordinateAsJson.arrayObject as! [Degrees]
-                let coordinate = Coordinate(lat: coordinateAsArray[0], lng: coordinateAsArray[1])
-                coordinates.append(coordinate)
-            }
-
-            return coordinates
-        }
-        else {
-            return nil
-        }
+        return jsonWithType("latlng")?.coordinates
     }
 
     private func jsonWithType(type: String) -> JSON? {

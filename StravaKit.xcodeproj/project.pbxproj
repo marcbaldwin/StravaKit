@@ -12,7 +12,6 @@
 		A027FE411C5AE16A00943798 /* StravaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A027FE361C5AE16A00943798 /* StravaKit.framework */; };
 		A027FE581C5AE29E00943798 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE521C5AE29E00943798 /* Activity.swift */; };
 		A027FE591C5AE29E00943798 /* ActivityGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE531C5AE29E00943798 /* ActivityGroup.swift */; };
-		A027FE5A1C5AE29E00943798 /* ActivityStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE541C5AE29E00943798 /* ActivityStream.swift */; };
 		A027FE5B1C5AE29E00943798 /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE551C5AE29E00943798 /* Athlete.swift */; };
 		A027FE5C1C5AE29E00943798 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE561C5AE29E00943798 /* DataPoint.swift */; };
 		A027FE5D1C5AE29E00943798 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE571C5AE29E00943798 /* Types.swift */; };
@@ -61,7 +60,6 @@
 		A027FE471C5AE16A00943798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A027FE521C5AE29E00943798 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		A027FE531C5AE29E00943798 /* ActivityGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityGroup.swift; sourceTree = "<group>"; };
-		A027FE541C5AE29E00943798 /* ActivityStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStream.swift; sourceTree = "<group>"; };
 		A027FE551C5AE29E00943798 /* Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
 		A027FE561C5AE29E00943798 /* DataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
 		A027FE571C5AE29E00943798 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 			children = (
 				A027FE521C5AE29E00943798 /* Activity.swift */,
 				A027FE531C5AE29E00943798 /* ActivityGroup.swift */,
-				A027FE541C5AE29E00943798 /* ActivityStream.swift */,
 				A027FE551C5AE29E00943798 /* Athlete.swift */,
 				A027FE561C5AE29E00943798 /* DataPoint.swift */,
 				A027FE8D1C5AE85D00943798 /* DateRange.swift */,
@@ -503,7 +500,6 @@
 				A05CD3641C5D7C380051D962 /* StravaTemplate.swift in Sources */,
 				A027FE5D1C5AE29E00943798 /* Types.swift in Sources */,
 				A05CD3621C5C39EA0051D962 /* StravaRequest.swift in Sources */,
-				A027FE5A1C5AE29E00943798 /* ActivityStream.swift in Sources */,
 				A027FE8C1C5AE7F000943798 /* StringExtensions.swift in Sources */,
 				A027FE5B1C5AE29E00943798 /* Athlete.swift in Sources */,
 			);

@@ -1,7 +1,4 @@
-import Foundation
-
-public class Athlete {
-
-    var firstName: String!
-    var lastName: String!
+public struct Athlete {
+    var firstName: String
+    var lastName: String
 }

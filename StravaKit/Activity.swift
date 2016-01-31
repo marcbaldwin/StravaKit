@@ -1,5 +1,3 @@
-import Foundation
-
 public class Activity {
 
     var id: Int!

@@ -1,5 +1,3 @@
-import Foundation
-
 class ActivityGroup {
 
     let dateRange: DateRange

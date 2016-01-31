@@ -1,5 +1,4 @@
-import Foundation
-import CoreLocation
+public typealias Stream = [DataPoint]
 
 public enum StreamType: String {
     case LatLng = "latlng"
@@ -9,7 +8,7 @@ public enum StreamType: String {
     case Time = "time"
 }
 
-struct DataPoint {
+public struct DataPoint {
 
     let distance: Distance?
     let coordinate: Coordinate?

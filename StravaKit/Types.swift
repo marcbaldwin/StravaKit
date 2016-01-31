@@ -1,4 +1,3 @@
-import Foundation
 import CoreLocation
 
 public typealias Distance = Float

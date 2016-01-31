@@ -56,7 +56,7 @@ public extension StravaClient { // MARK: Activities
         return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
     }
 
-    func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<ActivityStream> {
+    func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<Stream> {
         let parameters = builder().add("resolution", "low")
         return Request(url: api.activityStream(id, types: types), parameters: parameters) { $0.activityStream }
     }
