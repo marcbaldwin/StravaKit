@@ -1,8 +1,12 @@
 
 public struct StravaClient {
 
-    let accessToken: String
+    public let accessToken: String
     private let api = StravaApiTemplate()
+
+    public init(accessToken: String) {
+        self.accessToken = accessToken
+    }
 }
 
 public extension StravaClient { // MARK: Activities
