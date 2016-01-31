@@ -6,43 +6,43 @@ extension JSON {
 
     var activity: Activity {
 
-        let activity = Activity()
+        let builder = ActivityBuilder()
         let dateFormat = NSDateFormatter()
         dateFormat.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z"
         dateFormat.timeZone = NSTimeZone(abbreviation: "UTC")
 
-        activity.id = self["id"].int!
-        activity.name = self["name"].string!
-        activity.distance = self["distance"].floatValue
-        activity.movingTime = self["moving_time"].intValue
-        activity.elapsedTime = self["elapsed_time"].intValue
-        activity.totalElevationGain = self["total_elevation_gain"].floatValue
-        activity.type = self["type"].string!
-        activity.startDate = dateFormat.dateFromString(self["start_date"].stringValue)
-        activity.localTimeZone = NSTimeZone(name: self["timezone"].stringValue.characters.split { $0 == " "}.map(String.init)[1])
-        activity.polyline = self["map"]["summary_polyline"].stringValue
-        activity.startCoordinate = self["start_latlng"].coordinate
-        activity.endCoordinate = self["end_latlng"].coordinate
-        activity.achievementCount = self["achievement_count"].int!
-        activity.kudosCount = self["kudos_count"].int!
-        activity.commentCount = self["comment_count"].int!
-        activity.athleteCount = self["athlete_count"].int!
-        activity.photoCount = self["photo_count"].int!
-        activity.totalPhotoCount = self["total_photo_count"].int!
-        activity.isStaticTrainer = self["trainer"].boolValue
-        activity.isCommute = self["commute"].boolValue
-        activity.isManual = self["manual"].boolValue
-        activity.isPrivate = self["private"].boolValue
-        activity.isFlagged = self["flagged"].boolValue
-        activity.averageSpeed = self["average_speed"].floatValue
-        activity.maxSpeed = self["max_speed"].floatValue
-        activity.averageWatts = self["average_watts"].floatValue
-        activity.weightedAverageWatts = self["weighted_average_watts"].floatValue
-        activity.kilojoules = self["kilojoules"].floatValue
-        activity.deviceWatts = self["device_watts"].boolValue
-        activity.averageHeartRate = self["average_heartrate"].floatValue
-        activity.maxHeartRate = self["max_heartrate"].floatValue
+        builder.id = self["id"].int!
+        builder.name = self["name"].string!
+        builder.distance = self["distance"].floatValue
+        builder.movingTime = self["moving_time"].intValue
+        builder.elapsedTime = self["elapsed_time"].intValue
+        builder.totalElevationGain = self["total_elevation_gain"].floatValue
+        builder.type = self["type"].string!
+        builder.startDate = dateFormat.dateFromString(self["start_date"].stringValue)
+        builder.localTimeZone = NSTimeZone(name: self["timezone"].stringValue.characters.split { $0 == " "}.map(String.init)[1])
+        builder.polyline = self["map"]["summary_polyline"].stringValue
+        builder.startCoordinate = self["start_latlng"].coordinate
+        builder.endCoordinate = self["end_latlng"].coordinate
+        builder.achievementCount = self["achievement_count"].int!
+        builder.kudosCount = self["kudos_count"].int!
+        builder.commentCount = self["comment_count"].int!
+        builder.athleteCount = self["athlete_count"].int!
+        builder.photoCount = self["photo_count"].int!
+        builder.totalPhotoCount = self["total_photo_count"].int!
+        builder.isStaticTrainer = self["trainer"].boolValue
+        builder.isCommute = self["commute"].boolValue
+        builder.isManual = self["manual"].boolValue
+        builder.isPrivate = self["private"].boolValue
+        builder.isFlagged = self["flagged"].boolValue
+        builder.averageSpeed = self["average_speed"].floatValue
+        builder.maxSpeed = self["max_speed"].floatValue
+        builder.averageWatts = self["average_watts"].floatValue
+        builder.weightedAverageWatts = self["weighted_average_watts"].floatValue
+        builder.kilojoules = self["kilojoules"].floatValue
+        builder.deviceWatts = self["device_watts"].boolValue
+        builder.averageHeartRate = self["average_heartrate"].floatValue
+        builder.maxHeartRate = self["max_heartrate"].floatValue
 
-        return activity
+        return builder.build()
     }
 }
