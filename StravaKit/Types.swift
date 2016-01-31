@@ -2,7 +2,8 @@ import CoreLocation
 
 public typealias Distance = Float
 public typealias Speed = Float
-public typealias Time = NSTimeInterval
+public typealias Duration = Int
+public typealias Time = Int
 public typealias Coordinate = CLLocationCoordinate2D
 public typealias Degrees = CLLocationDegrees
 

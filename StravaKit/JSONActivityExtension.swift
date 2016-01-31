@@ -14,8 +14,8 @@ extension JSON {
         activity.id = self["id"].int!
         activity.name = self["name"].string!
         activity.distance = self["distance"].floatValue
-        activity.movingTime = self["moving_time"].doubleValue
-        activity.elapsedTime = self["elapsed_time"].doubleValue
+        activity.movingTime = self["moving_time"].intValue
+        activity.elapsedTime = self["elapsed_time"].intValue
         activity.totalElevationGain = self["total_elevation_gain"].floatValue
         activity.type = self["type"].string!
         activity.startDate = dateFormat.dateFromString(self["start_date"].stringValue)

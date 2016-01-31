@@ -16,7 +16,7 @@ public struct DataPoint {
     let speed: Speed?
     let time: Time?
     var averageSpeed: Speed! {
-        return time! == 0 ? 0 : Speed(Double(distance!) / time!)
+        return time! == 0 ? 0 : Speed(Double(distance!) / Double(time!))
     }
 
     init(builder: DataPointBuilder) {
