@@ -7,16 +7,19 @@ public struct StravaClient {
 
 public extension StravaClient { // MARK: Activities
 
-    func activitiesForLocalAthlete(from: NSDate, to: NSDate) -> Request<[Activity]> {
+    /// Returns a list of activities for the authenticated user
+    func athleteAcitvities(from from: NSDate, to: NSDate) -> Request<[Activity]> {
         let parameters = builder().add("before", to.timeIntervalSince1970).add("after", from.timeIntervalSince1970)
         return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
     }
 
-    func activities(page page: Int, pageSize: Int) -> Request<[Activity]> {
+    /// Returns a list of activities for the authenticated user
+    func athleteAcitvities(page page: Int, pageSize: Int) -> Request<[Activity]> {
         let parameters = builder().add("page", page).add("per_page", pageSize)
         return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
     }
 
+    /// Returns the stream of an activity belonging to the authenticated user
     func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<Stream> {
         let parameters = builder().add("resolution", "low")
         return Request(url: api.activityStream(id, types: types), parameters: parameters) { $0.activityStream }

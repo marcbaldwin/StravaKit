@@ -5,11 +5,10 @@ internal class StravaApiTemplate {
     private let url = "https://www.strava.com/"
 
     private lazy var api: String = self.url + "api/v3/"
-    private lazy var athleteActivitiesTemplate: String = self.api + "athlete/activities"
     private lazy var streamsTemplate: URITemplate = URITemplate(template: self.api + "activities/{id}/streams/{types}")
 
     func athleteAcitvities() -> String {
-        return athleteActivitiesTemplate
+        return api + "athlete/activities"
     }
 
     func activityStream(id: Int, types: [StreamType]) -> String {
