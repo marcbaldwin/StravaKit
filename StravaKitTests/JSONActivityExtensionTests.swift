@@ -20,6 +20,7 @@ class JSONActivityEtensionTests: XCTestCase {
         expect(activity.type).to(equal("Ride"))
         expect(activity.startDate).to(equal(NSDate(timeIntervalSince1970: 1377302652)))
         expect(activity.localTimeZone).to(equal(NSTimeZone(name: "America/Los_Angeles")!))
+        expect(activity.polyline).to(equal("cetewLja@zYcG"))
         expect(activity.startCoordinate).to(equal(Coordinate(37.793551, -122.2686)))
         expect(activity.endCoordinate).to(equal(Coordinate(37.792836, -122.268287)))
         expect(activity.achievementCount).to(equal(8))

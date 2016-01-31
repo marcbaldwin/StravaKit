@@ -11,9 +11,11 @@ public class Activity {
     public var maxSpeed: Speed!
 
     public var type: String!
+
     public var startDate: NSDate!
     public var localTimeZone: NSTimeZone!
 
+    public var polyline: String!
     public var startCoordinate: Coordinate!
     public var endCoordinate: Coordinate!
 

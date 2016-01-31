@@ -20,6 +20,7 @@ extension JSON {
         activity.type = self["type"].string!
         activity.startDate = dateFormat.dateFromString(self["start_date"].stringValue)
         activity.localTimeZone = NSTimeZone(name: self["timezone"].stringValue.characters.split { $0 == " "}.map(String.init)[1])
+        activity.polyline = self["map"]["summary_polyline"].stringValue
         activity.startCoordinate = self["start_latlng"].coordinate
         activity.endCoordinate = self["end_latlng"].coordinate
         activity.achievementCount = self["achievement_count"].int!
