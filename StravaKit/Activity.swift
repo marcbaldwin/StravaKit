@@ -72,6 +72,12 @@ public struct Activity {
     }
 }
 
+extension Activity: Equatable { }
+
+public func ==(lhs: Activity, rhs: Activity) -> Bool {
+    return lhs.id == rhs.id
+}
+
 public class ActivityBuilder {
 
     public var id: Int!
