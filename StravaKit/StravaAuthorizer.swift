@@ -1,9 +1,14 @@
 
 public struct StravaAuthorizer {
 
-    let clientId: String
-    let clientSecret: String
+    public let clientId: String
+    public let clientSecret: String
     private let template = StravaAuthorizationTemplate()
+
+    public init(clientId: String, clientSecret: String) {
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+    }
 }
 
 public extension StravaAuthorizer {
