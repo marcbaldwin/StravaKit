@@ -1,7 +1,7 @@
 import Alamofire
 import SwiftyJSON
 
-public class Request<T> {
+internal class Request<T> {
 
     private let method: Alamofire.Method
     private let url: String
@@ -16,7 +16,7 @@ public class Request<T> {
     }
 }
 
-public extension Request {
+internal extension Request {
 
     func onResponse(handler: (Response<T>) -> ()) {
         Alamofire
