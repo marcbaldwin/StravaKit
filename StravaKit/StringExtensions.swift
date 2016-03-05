@@ -27,10 +27,4 @@ extension String {
             return NSString(format: self, arguments: $0) as String
         }
     }
-
-    func dateFormatter() -> NSDateFormatter {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = self
-        return dateFormatter
-    }
 }
