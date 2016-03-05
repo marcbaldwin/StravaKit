@@ -18,16 +18,21 @@ public class Request<T> {
 
 public extension Request {
 
-    func onResponse(handler: (T) -> ()) {
-        Alamofire.request(method, url, parameters: parameters.build()).responseJSON { response in
-            if let error = response.result.error {
-                print(error)
-            } else if let response = response.response where response.statusCode == 401 {
+    func onResponse(handler: (Response<T>) -> ()) {
+        Alamofire
+            .request(method, url, parameters: parameters.build())
+            .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    if let response = response.response where response.statusCode == 401 {
+                        handler(.Failure(.Unauthorized))
+                    } else {
+                        handler(.Success(self.transformer(JSON(value))))
+                    }
 
-            } else {
-                handler(self.transformer(JSON(response.result.value!)))
+                case .Failure(let error): print(error)
+                }
             }
-        }
     }
 }
 

@@ -12,21 +12,21 @@ public struct StravaClient {
 public extension StravaClient { // MARK: Activities
 
     /// Returns a list of activities for the authenticated user
-    func athleteAcitvities(from from: NSDate, to: NSDate) -> Request<[Activity]> {
+    func athleteAcitvities(from from: NSDate, to: NSDate, handler: (Response<[Activity]>)->Void) {
         let parameters = builder().add("before", to.timeIntervalSince1970).add("after", from.timeIntervalSince1970)
-        return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
+        Request(url: api.athleteAcitvities(), parameters: parameters, transformer: { $0.activities }).onResponse(handler)
     }
 
     /// Returns a list of activities for the authenticated user
-    func athleteAcitvities(page page: Int, pageSize: Int) -> Request<[Activity]> {
+    func athleteAcitvities(page page: Int, pageSize: Int, handler: (Response<[Activity]>)->Void) {
         let parameters = builder().add("page", page).add("per_page", pageSize)
-        return Request(url: api.athleteAcitvities(), parameters: parameters) { $0.activities }
+        Request(url: api.athleteAcitvities(), parameters: parameters, transformer: { $0.activities }).onResponse(handler)
     }
 
     /// Returns the stream of an activity belonging to the authenticated user
-    func activityStreamForActivityWithId(id: Int, types: [StreamType]) ->Request<Stream> {
+    func activityStreamForActivityWithId(id: Int, types: [StreamType], handler: (Response<Stream>)->Void) {
         let parameters = builder().add("resolution", "low")
-        return Request(url: api.activityStream(id, types: types), parameters: parameters) { $0.activityStream }
+        Request(url: api.activityStream(id, types: types), parameters: parameters, transformer: { $0.activityStream }).onResponse(handler)
     }
 }
 
