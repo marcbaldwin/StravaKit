@@ -18,12 +18,13 @@ public class Request<T> {
 
 public extension Request {
 
-    func onSuccess(handler: (T) -> ()) {
+    func onResponse(handler: (T) -> ()) {
         Alamofire.request(method, url, parameters: parameters.build()).responseJSON { response in
             if let error = response.result.error {
                 print(error)
-            }
-            else {
+            } else if let response = response.response where response.statusCode == 401 {
+
+            } else {
                 handler(self.transformer(JSON(response.result.value!)))
             }
         }

@@ -8,7 +8,7 @@ class BaseStravaClientTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        stravaClient = StravaClient(accessToken: "464f7efa6615307e97ecf404cdbaeaff547f7d98")
+        stravaClient = StravaClient(accessToken: "6abae0f7b8fee09c4f46ba0a7207d4f57637dabd")
     }
 }
 

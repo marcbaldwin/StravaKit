@@ -28,11 +28,8 @@ public class StravaAuthorizer {
             exchangeTokenWithAuthorizationCode(code)
         }
     }
-}
 
-private extension StravaAuthorizer {
-
-    func exchangeTokenWithAuthorizationCode(authorizationCode: String) {
+    public func exchangeTokenWithAuthorizationCode(authorizationCode: String) {
         let parameters = Parameters()
             .add("client_id", clientId)
             .add("client_secret", clientSecret)
@@ -41,7 +38,7 @@ private extension StravaAuthorizer {
         Request<(String, Athlete)>(method: .POST, url: template.exchangeToken(), parameters: parameters) { json in
                 return (json["access_token"].string!, json["athlete"].athlete)
             }
-            .onSuccess { [unowned self] accessToken, athlete in
+            .onResponse { [unowned self] accessToken, athlete in
                 self.delegate?.didAuthorizeAthleteWithAccessToken(accessToken)
             }
     }
