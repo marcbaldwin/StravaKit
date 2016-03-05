@@ -1,6 +1,6 @@
 
 /// Represents a response from a completed Strava request
-public enum Response<T> {
-    case Success(T)
+public enum Response<Value> {
+    case Success(Value)
     case Failure(StravaError)
 }

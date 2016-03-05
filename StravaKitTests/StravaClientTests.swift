@@ -2,16 +2,9 @@ import XCTest
 import Nimble
 @testable import StravaKit
 
-class StravaClientActivitiesTests: BaseStravaClientTests {
+class StravaClientTests: BaseStravaClientTests {
 
-    var expectation: XCTestExpectation!
-
-    override func setUp() {
-        super.setUp()
-        expectation = createExpectation()
-    }
-
-    func testShouldReturnActivitiesBetweenDateRange() {
+    func test_shouldReturnActivitiesBetweenDateRange() {
         let dateFormatter = "yyyy:MM:d".dateFormatter()
         let weekBeginning = dateFormatter.dateFromString("2015:05:25")!
         let weekEnd = dateFormatter.dateFromString("2015:05:31")!
@@ -26,7 +19,7 @@ class StravaClientActivitiesTests: BaseStravaClientTests {
         waitForExpectations()
     }
 
-    func testShouldReturnActivityStreamForActivity() {
+    func test_shouldReturnActivityStreamForActivity() {
         stravaClient.activityStreamForActivityWithId(326040145, types: [StreamType.Distance, .Altitude]) { activityStream in
             expect(activityStream).toNot(beNil())
             self.expectation.fulfill()
@@ -34,7 +27,7 @@ class StravaClientActivitiesTests: BaseStravaClientTests {
         waitForExpectations()
     }
 
-    func testShouldGetActivitiesByPage() {
+    func test_shouldGetActivitiesByPage() {
         stub("athlete/activities", withParams: "page=1&per_page=2", withJsonFromResource: "activities_1_2")
 
         stravaClient.athleteAcitvities(page: 1, pageSize: 2) { response in

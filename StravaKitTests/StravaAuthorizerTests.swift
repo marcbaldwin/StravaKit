@@ -2,7 +2,7 @@ import XCTest
 import Nimble
 @testable import StravaKit
 
-class StravaClientAuthorizationTests: XCTestCase {
+class StravaAuthorizerTests: XCTestCase {
 
     var stravaAuthorizer: StravaAuthorizer!
 
@@ -11,7 +11,7 @@ class StravaClientAuthorizationTests: XCTestCase {
         stravaAuthorizer = StravaAuthorizer(clientId: "6780", clientSecret: "4b33f695b8779a9789f82a43e4796804829de2e6")
     }
 
-    func testShouldNotifyDelegateWhenTokenExchangeCompletes() {
+    func test_shouldNotifyDelegateWhenTokenExchangeCompletes() {
         let expectation = createExpectation()
 
         class DelegateSpy: StravaAuthorizerDelegate {
