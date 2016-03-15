@@ -19,20 +19,28 @@ internal class Request<T> {
 internal extension Request {
 
     func onResponse(handler: (Response<T>) -> ()) {
+
+        let responseHandler: (Alamofire.Response<AnyObject, NSError>)->Void = { response in
+            switch response.result {
+            case .Success(let value):
+                if let response = response.response where response.statusCode == 401 {
+                    handler(.Failure(.Unauthorized))
+                } else {
+                    handler(.Success(self.transformer(JSON(value))))
+                }
+            case .Failure(let error): self.handleError(error, handler: handler)
+            }
+        }
+
         Alamofire
             .request(method, url, parameters: parameters.build())
-            .responseJSON { response in
-                switch response.result {
-                case .Success(let value):
-                    if let response = response.response where response.statusCode == 401 {
-                        handler(.Failure(.Unauthorized))
-                    } else {
-                        handler(.Success(self.transformer(JSON(value))))
-                    }
+            .responseJSON(completionHandler: responseHandler)
+    }
 
-                case .Failure(let error): print(error)
-                }
-            }
+    func handleError(error: NSError, handler: (Response<T>) -> ()) {
+        if 1009 == error.code {
+            handler(.Failure(.Offline))
+        }
     }
 }
 
