@@ -35,10 +35,9 @@ public class StravaAuthorizer {
             .add("client_secret", clientSecret)
             .add("code", authorizationCode)
 
-        Request<(String, Athlete)>(method: .POST, url: template.exchangeToken(), parameters: parameters) { json in
+        Request.request(.POST, url: template.exchangeToken(), parameters: parameters, transformer: { json in
                 return (json["access_token"].string!, json["athlete"].athlete)
-            }
-            .onResponse { [unowned self] response in
+            }) { [unowned self] response in
                 switch response {
                 case .Success(let (accessToken, _)):
                     self.delegate?.didAuthorizeAthleteWithAccessToken(accessToken)
