@@ -11,7 +11,7 @@ public struct StravaClient {
 
 public extension StravaClient { // MARK: Activities
 
-    /// Returns a list of activities for the authenticated user
+    /// Returns a list of activities within the specified date range for the authenticated user
     func athleteAcitvities(from from: NSDate, to: NSDate, handler: (Response<[Activity]>)->Void) {
         if let accessToken = accessToken {
             let parameters = builder(accessToken).add("before", to.timeIntervalSince1970).add("after", from.timeIntervalSince1970)
@@ -30,6 +30,10 @@ public extension StravaClient { // MARK: Activities
             handler(.Failure(.Unauthorized))
         }
     }
+
+}
+
+private extension StravaClient { // MARK: Activity
 
     /// Returns the stream of an activity belonging to the authenticated user
     func activityStreamForActivityWithId(id: Int, types: [StreamType], handler: (Response<Stream>)->Void) {

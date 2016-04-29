@@ -1,5 +1,5 @@
 
-/// Represents the errors that might be produced by the Strava client
+/// Represents an error that can be produced by a Strava client
 public enum StravaError {
     case Offline
     case Unauthorized
