@@ -1,5 +1,5 @@
 
-public struct StravaClient {
+public class StravaClient {
 
     public var accessToken: String?
     private let api = StravaApiTemplate()
