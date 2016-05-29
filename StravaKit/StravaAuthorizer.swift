@@ -1,7 +1,7 @@
 /// Classes that need to be notified when the user is successfully authorized should implement this protocol
 public protocol StravaAuthorizerDelegate: class {
 
-    func didAuthorizeAthleteWithAccessToken(accessToken: String)
+    func didAuthorizeAthlete(athlete: Athlete, withAccessToken accessToken: String)
 }
 
 /// Class that performs token exchange with Strava
@@ -39,8 +39,8 @@ public class StravaAuthorizer {
                 return (json["access_token"].string!, json["athlete"].athlete)
             }) { [unowned self] response in
                 switch response {
-                case .Success(let (accessToken, _)):
-                    self.delegate?.didAuthorizeAthleteWithAccessToken(accessToken)
+                case .Success(let (accessToken, athlete)):
+                    self.delegate?.didAuthorizeAthlete(athlete!, withAccessToken: accessToken)
                 case .Failure(_): break
                 }
             }

@@ -1,4 +1,14 @@
+
 public struct Athlete {
-    var firstName: String
-    var lastName: String
+    let username: String
+    let email: String
+    let firstName: String
+    let lastName: String
+    let premium: Bool
+    let measurementPreference: MeasurementPreference
+}
+
+public enum MeasurementPreference {
+    case Meters
+    case Feet
 }

@@ -33,7 +33,7 @@ public extension StravaClient { // MARK: Activities
 
 }
 
-private extension StravaClient { // MARK: Activity
+public extension StravaClient { // MARK: Activity
 
     /// Returns the stream of an activity belonging to the authenticated user
     func activityStreamForActivityWithId(id: Int, types: [StreamType], handler: (Response<Stream>)->Void) {

@@ -22,7 +22,7 @@ class StravaAuthorizerTests: XCTestCase {
                 self.expectation = expectation
             }
 
-            func didAuthorizeAthleteWithAccessToken(accessToken: String) {
+            func didAuthorizeAthlete(athlete: Athlete, withAccessToken accessToken: String) {
                 self.accessToken = accessToken
                 expectation.fulfill()
             }

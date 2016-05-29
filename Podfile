@@ -5,9 +5,11 @@ target 'StravaKit' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'URITemplate'
-end
 
-target 'StravaKitTests' do
-  pod 'Nimble', '3.0.0'
-  pod 'Mockingjay'
+  target 'StravaKitTests' do
+    pod 'SwiftyJSON'
+    pod 'Nimble'
+    pod 'Mockingjay'
+  end
+
 end
