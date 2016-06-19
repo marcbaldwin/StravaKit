@@ -1,11 +1,11 @@
 
 public struct Athlete {
-    let username: String
-    let email: String
-    let firstName: String
-    let lastName: String
-    let premium: Bool
-    let measurementPreference: MeasurementPreference
+    public let username: String
+    public let email: String
+    public let firstName: String
+    public let lastName: String
+    public let premium: Bool
+    public let measurementPreference: MeasurementPreference
 }
 
 public enum MeasurementPreference {
