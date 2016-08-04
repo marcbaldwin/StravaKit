@@ -11,7 +11,6 @@ public class StravaAuthorizer {
 
     public let clientId: String
     public let clientSecret: String
-
     private let template = StravaAuthorizationTemplate()
 
     public init(clientId: String, clientSecret: String) {
@@ -19,11 +18,11 @@ public class StravaAuthorizer {
         self.clientSecret = clientSecret
     }
 
-    public func requestAccessWithRedirectURL(url: String) {
-        UIApplication.sharedApplication().openURL(template.requestAccess(clientId: clientId, redirectUri: url).URL!)
+    public func requestAccessUrlWithRedirectUrl(url: String) -> NSURL {
+        return template.requestAccess(clientId: clientId, redirectUri: url).URL!
     }
 
-    public func authorizeWithURL(url: NSURL) {
+    public func authorizeWithUrl(url: NSURL) {
         if let code = url.params["code"] {
             exchangeTokenWithAuthorizationCode(code)
         }
