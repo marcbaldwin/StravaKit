@@ -15,7 +15,7 @@ class ActivityTests: XCTestCase {
 
 private extension ActivityTests {
 
-    func createActivityWithId(id: Int) -> Activity {
+    func createActivityWithId(_ id: Int) -> Activity {
         return Activity(
             id: id,
             name: "08/23/2013 Oakland, CA",

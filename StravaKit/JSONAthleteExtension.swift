@@ -25,9 +25,9 @@ extension JSON {
     var measurementPreference: MeasurementPreference? {
         guard let value = string else { return nil }
         if value == "meters" {
-            return .Meters
+            return .meters
         } else {
-            return .Feet
+            return .feet
         }
     }
 }

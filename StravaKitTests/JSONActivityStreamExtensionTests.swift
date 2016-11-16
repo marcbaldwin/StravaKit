@@ -5,7 +5,7 @@ import SwiftyJSON
 
 class JSONActivityStreamExtensionTests: XCTestCase {
 
-    var data: NSData { return NSData(contentsOfFile: NSBundle(forClass: self.dynamicType).pathForResource("ActivityStream", ofType: "json")!)! }
+    var data: Data { return (try! Data(contentsOf: URL(fileURLWithPath: Bundle(for: type(of: self)).path(forResource: "ActivityStream", ofType: "json")!))) }
 
     func testShouldConvertJSONToActivityStream() {
         let stream = JSON(data: data).activityStream

@@ -26,16 +26,16 @@ extension JSON {
         return dataPoints
     }
 
-    private func dataArray(name: String) -> [AnyObject]? {
+    fileprivate func dataArray(_ name: String) -> [AnyObject]? {
         let rawArray = jsonWithType(name)
-        return rawArray == nil ? nil : rawArray?.arrayObject
+        return rawArray?.arrayObject as [AnyObject]?
     }
 
-    private func coodinates() -> [Coordinate]? {
+    fileprivate func coodinates() -> [Coordinate]? {
         return jsonWithType("latlng")?.coordinates
     }
 
-    private func jsonWithType(type: String) -> JSON? {
+    fileprivate func jsonWithType(_ type: String) -> JSON? {
         for object in self {
             if object.1["type"].string == type {
                 return object.1["data"]

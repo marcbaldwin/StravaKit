@@ -9,6 +9,6 @@ public struct Athlete {
 }
 
 public enum MeasurementPreference {
-    case Meters
-    case Feet
+    case meters
+    case feet
 }

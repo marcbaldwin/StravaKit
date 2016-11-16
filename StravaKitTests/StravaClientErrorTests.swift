@@ -11,8 +11,8 @@ class StravaClientErrorTests: BaseStravaClientTests {
 
     func test_givenAccessTokenIsInvalid_whenFetchActivitiesInDateRange_thenShouldReturnUnauthorizedError() {
         let dateFormatter = "yyyy:MM:d".dateFormatter()
-        let weekBeginning = dateFormatter.dateFromString("2015:05:25")!
-        let weekEnd = dateFormatter.dateFromString("2015:05:31")!
+        let weekBeginning = dateFormatter.date(from: "2015:05:25")!
+        let weekEnd = dateFormatter.date(from: "2015:05:31")!
 
         stravaClient.athleteAcitvities(from: weekBeginning, to: weekEnd) { response in
             self.verifyResponseIsUnauthorized(response)
@@ -32,7 +32,7 @@ class StravaClientErrorTests: BaseStravaClientTests {
     }
 
     func test_givenAccessTokenIsInvalid_whenFetchActivityStream_thenShouldReturnUnauthorizedError() {
-        stravaClient.activityStreamForActivityWithId(326040145, types: [StreamType.Distance, .Altitude]) { response in
+        stravaClient.activityStreamForActivityWithId(326040145, types: [StreamType.distance, .altitude]) { response in
             self.verifyResponseIsUnauthorized(response)
         }
 
@@ -42,9 +42,9 @@ class StravaClientErrorTests: BaseStravaClientTests {
 
 private extension StravaClientErrorTests {
 
-    func verifyResponseIsUnauthorized<T>(response: Response<T>) {
-        if case .Failure(let error) = response {
-            expect(error).to(equal(StravaError.Unauthorized))
+    func verifyResponseIsUnauthorized<T>(_ response: Response<T>) {
+        if case .failure(let error) = response {
+            expect(error).to(equal(StravaError.unauthorized))
             expectation.fulfill()
         } else {
             fail()

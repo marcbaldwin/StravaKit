@@ -22,7 +22,7 @@ class StravaAuthorizerTests: XCTestCase {
                 self.expectation = expectation
             }
 
-            func didAuthorizeAthlete(athlete: Athlete?, withAccessToken accessToken: String) {
+            func didAuthorizeAthlete(_ athlete: Athlete?, withAccessToken accessToken: String) {
                 self.accessToken = accessToken
                 expectation.fulfill()
             }
@@ -36,6 +36,6 @@ class StravaAuthorizerTests: XCTestCase {
 
         waitForExpectations()
 
-        expect(spy.accessToken).to(equal("6abae0f7b8fee09c4f46ba0a7207d4f57637dabd"))
+        expect(spy.accessToken).to(equal("4435db5b6cd26c8ab99b8983acaa47d38382f5c9"))
     }
 }

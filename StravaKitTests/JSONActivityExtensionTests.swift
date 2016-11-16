@@ -5,7 +5,7 @@ import SwiftyJSON
 
 class JSONActivityEtensionTests: XCTestCase {
 
-    var data: NSData { return NSData(contentsOfFile: NSBundle(forClass: self.dynamicType).pathForResource("Activity", ofType: "json")!)! }
+    var data: Data { return (try! Data(contentsOf: URL(fileURLWithPath: Bundle(for: type(of: self)).path(forResource: "Activity", ofType: "json")!))) }
 
     func testShouldConvertJSONToActivity() {
         let activity = JSON(data: data).activity!

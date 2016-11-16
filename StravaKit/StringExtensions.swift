@@ -3,7 +3,7 @@ import Foundation
 extension String {
 
     subscript (i: Int) -> Character {
-        return self[startIndex.advancedBy(i)]
+        return self[characters.index(startIndex, offsetBy: i)]
     }
 
     subscript (i: Int) -> String {
@@ -11,18 +11,18 @@ extension String {
     }
 
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(startIndex.advancedBy(r.startIndex) ..< startIndex.advancedBy(r.endIndex))
+        return substring(with: characters.index(startIndex, offsetBy: r.lowerBound) ..< characters.index(startIndex, offsetBy: r.upperBound))
     }
 
-    var fileURL: NSURL? {
-        return NSURL(fileURLWithPath: self)
+    var fileURL: Foundation.URL? {
+        return Foundation.URL(fileURLWithPath: self)
     }
 
-    var URL: NSURL? {
-        return NSURL(string: self)
+    var URL: Foundation.URL? {
+        return Foundation.URL(string: self)
     }
 
-    func format(args: CVarArgType...) -> String {
+    func format(_ args: CVarArg...) -> String {
         return withVaList(args) {
             return NSString(format: self, arguments: $0) as String
         }

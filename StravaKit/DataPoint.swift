@@ -1,11 +1,11 @@
 public typealias Stream = [DataPoint]
 
 public enum StreamType: String {
-    case LatLng = "latlng"
-    case Distance = "distance"
-    case Altitude = "altitude"
-    case Speed = "velocity_smooth"
-    case Time = "time"
+    case latLng = "latlng"
+    case distance = "distance"
+    case altitude = "altitude"
+    case speed = "velocity_smooth"
+    case time = "time"
 }
 
 public struct DataPoint {
@@ -42,27 +42,27 @@ class DataPointBuilder {
 
     }
 
-    func distance(distance: Distance?) -> DataPointBuilder {
+    func distance(_ distance: Distance?) -> DataPointBuilder {
         self.distance = distance
         return self
     }
 
-    func coordinate(coordinate: Coordinate?) -> DataPointBuilder {
+    func coordinate(_ coordinate: Coordinate?) -> DataPointBuilder {
         self.coordinate = coordinate
         return self
     }
 
-    func elevation(elevation: Distance?) -> DataPointBuilder {
+    func elevation(_ elevation: Distance?) -> DataPointBuilder {
         self.elevation = elevation
         return self
     }
 
-    func speed(speed: Speed?) -> DataPointBuilder {
+    func speed(_ speed: Speed?) -> DataPointBuilder {
         self.speed = speed
         return self
     }
 
-    func time(time: Time?) -> DataPointBuilder {
+    func time(_ time: Time?) -> DataPointBuilder {
         self.time = time
         return self
     }

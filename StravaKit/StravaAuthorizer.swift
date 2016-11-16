@@ -1,46 +1,48 @@
+import Alamofire
+
 /// Classes that need to be notified when the user is successfully authorized should implement this protocol
 public protocol StravaAuthorizerDelegate: class {
 
-    func didAuthorizeAthlete(athlete: Athlete?, withAccessToken accessToken: String)
+    func didAuthorizeAthlete(_ athlete: Athlete?, withAccessToken accessToken: String)
 }
 
 /// Class that performs token exchange with Strava
-public class StravaAuthorizer {
+open class StravaAuthorizer {
 
-    public weak var delegate: StravaAuthorizerDelegate?
+    open weak var delegate: StravaAuthorizerDelegate?
 
-    public let clientId: String
-    public let clientSecret: String
-    private let template = StravaAuthorizationTemplate()
+    open let clientId: String
+    open let clientSecret: String
+    fileprivate let template = StravaAuthorizationTemplate()
 
     public init(clientId: String, clientSecret: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret
     }
 
-    public func requestAccessUrlWithRedirectUrl(url: String) -> NSURL {
-        return template.requestAccess(clientId: clientId, redirectUri: url).URL!
+    open func requestAccessUrlWithRedirectUrl(_ url: String) -> URL {
+        return template.requestAccess(clientId: clientId, redirectUri: url).URL! as URL
     }
 
-    public func authorizeWithUrl(url: NSURL) {
+    open func authorizeWithUrl(_ url: URL) {
         if let code = url.params["code"] {
             exchangeTokenWithAuthorizationCode(code)
         }
     }
 
-    public func exchangeTokenWithAuthorizationCode(authorizationCode: String) {
+    open func exchangeTokenWithAuthorizationCode(_ authorizationCode: String) {
         let parameters = Parameters()
-            .add("client_id", clientId)
-            .add("client_secret", clientSecret)
-            .add("code", authorizationCode)
+            .add("client_id", clientId as AnyObject)
+            .add("client_secret", clientSecret as AnyObject)
+            .add("code", authorizationCode as AnyObject)
 
-        Request.request(.POST, url: template.exchangeToken(), parameters: parameters, transformer: { json in
+        Request.request(.post, url: template.exchangeToken(), parameters: parameters, transformer: { json in
                 return (json["access_token"].string!, json["athlete"].athlete)
             }) { [unowned self] response in
                 switch response {
-                case .Success(let (accessToken, athlete)):
+                case .success(let (accessToken, athlete)):
                     self.delegate?.didAuthorizeAthlete(athlete, withAccessToken: accessToken)
-                case .Failure(_): break
+                case .failure(_): break
                 }
             }
     }

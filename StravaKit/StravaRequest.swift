@@ -3,28 +3,27 @@ import SwiftyJSON
 
 internal class Request {
 
-    static func request<T>(method: Alamofire.Method = .GET, url: String, parameters: Parameters, transformer: (JSON) -> T, handler: (Response<T>) -> ()) {
+    static func request<T>(_ method: HTTPMethod = .get, url: String, parameters: Parameters, transformer: @escaping (JSON) -> T, handler: @escaping (Response<T>) -> Void) {
 
-        Alamofire
-            .request(method, url, parameters: parameters.build())
+        Alamofire.request(url, method: method, parameters: parameters.build())
             .responseJSON { response in
                 switch response.result {
-                case .Success(let value):
-                    if let response = response.response where response.statusCode == 401 {
-                        handler(.Failure(.Unauthorized))
+                case .success(let value):
+                    if let response = response.response, response.statusCode == 401 {
+                        handler(.failure(.unauthorized))
                     } else {
-                        handler(.Success(transformer(JSON(value))))
+                        handler(.success(transformer(JSON(value))))
                     }
-                case .Failure(_): handler(.Failure(.Offline))
+                case .failure(_): handler(.failure(.offline))
                 }
             }
     }
 }
 
 internal class Parameters {
-    private var parameters = [String : AnyObject]()
+    fileprivate var parameters = [String : AnyObject]()
 
-    func add(key: String, _ value: AnyObject) -> Self {
+    func add(_ key: String, _ value: AnyObject) -> Self {
         parameters[key] = value
         return self
     }

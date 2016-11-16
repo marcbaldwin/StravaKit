@@ -2,8 +2,8 @@ import Foundation
 
 extension String {
 
-    func dateFormatter() -> NSDateFormatter {
-        let dateFormatter = NSDateFormatter()
+    func dateFormatter() -> DateFormatter {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = self
         return dateFormatter
     }
