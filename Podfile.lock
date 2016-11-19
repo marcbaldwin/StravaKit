@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.0.1)
+  - Alamofire (4.1.0)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
     - Mockingjay/XCTest (= 2.0.0)
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - URITemplate
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire: e266cf991b933498df791e645e0d8ac294492153
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
