@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.1.0)
+  - Alamofire (4.3.0)
   - Mockingjay (2.0.0):
     - Mockingjay/Core (= 2.0.0)
     - Mockingjay/XCTest (= 2.0.0)
@@ -7,8 +7,8 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.0):
     - Mockingjay/Core
-  - Nimble (5.1.1)
-  - SwiftyJSON (3.1.1)
+  - Nimble (6.0.1)
+  - SwiftyJSON (3.1.4)
   - URITemplate (2.0.0)
 
 DEPENDENCIES:
@@ -19,12 +19,12 @@ DEPENDENCIES:
   - URITemplate
 
 SPEC CHECKSUMS:
-  Alamofire: e266cf991b933498df791e645e0d8ac294492153
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
-  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
-  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
 
 PODFILE CHECKSUM: d4582b40b973157134a9875b5e0a62c6b816903c
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.2.0.beta.3
