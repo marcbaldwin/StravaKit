@@ -1,57 +1,42 @@
+import Moya
+import Alamofire
 
-open class StravaClient {
-
-    open var accessToken: String?
-    fileprivate let api = StravaApiTemplate()
-
-    public init(accessToken: String? = nil) {
-        self.accessToken = accessToken
-    }
+public enum StravaApi {
+    case athleteActivities(accessToken: String, page: Int, size: Int)
 }
 
-public extension StravaClient { // MARK: Activities
+extension StravaApi: TargetType {
 
-    /// Returns a list of activities within the specified date range for the authenticated user
-    func athleteAcitvities(from: Date, to: Date, handler: @escaping (Response<[Activity]>)->Void) {
-        if let accessToken = accessToken {
-            let parameters = builder(accessToken).add("before", to.timeIntervalSince1970 as AnyObject).add("after", from.timeIntervalSince1970 as AnyObject)
-            Request.request(url: api.athleteAcitvities(), parameters: parameters,
-                            transformer: { $0.activities }, handler: handler)
-        } else {
-            handler(.failure(.unauthorized))
+    public var baseURL: URL {
+        return URL(string: "https://www.strava.com/api/v3/")!
+    }
+
+    public var path: String {
+        switch self {
+        case .athleteActivities: return "athlete/activities"
         }
     }
 
-    /// Returns a list of activities for the authenticated user
-    func athleteAcitvities(page: Int, pageSize: Int, handler: @escaping (Response<[Activity]>)->Void) {
-        if let accessToken = accessToken {
-            let parameters = builder(accessToken).add("page", page as AnyObject).add("per_page", pageSize as AnyObject)
-            Request.request(url: api.athleteAcitvities(), parameters: parameters,
-                            transformer: { $0.activities }, handler: handler)
-        } else {
-            handler(.failure(.unauthorized))
+    public var method: Moya.Method {
+        return .get
+    }
+
+    public var parameters: [String : Any]? {
+        switch self {
+        case let .athleteActivities(accessToken, page, size):
+            return ["access_token" : accessToken, "page" : page, "per_page" : size]
         }
     }
 
-}
-
-public extension StravaClient { // MARK: Activity
-
-    /// Returns the stream of an activity belonging to the authenticated user
-    func activityStreamForActivityWithId(_ id: Int, types: [StreamType], handler: @escaping (Response<Stream>)->Void) {
-        if let accessToken = accessToken {
-            let parameters = builder(accessToken).add("resolution", "low" as AnyObject)
-            Request.request(url: api.activityStream(id, types: types), parameters: parameters,
-                            transformer: { $0.activityStream }, handler: handler)
-        } else {
-            handler(.failure(.unauthorized))
-        }
+    public var parameterEncoding: ParameterEncoding {
+        return URLEncoding.default
     }
-}
 
-private extension StravaClient {
+    public var task: Task {
+        return .request
+    }
 
-    func builder(_ accessToken: String) -> Parameters {
-        return Parameters().add("access_token", accessToken as AnyObject)
+    public var sampleData: Data {
+        return "".data(using: .utf8)!
     }
 }

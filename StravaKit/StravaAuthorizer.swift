@@ -1,49 +1,46 @@
+import Moya
 import Alamofire
 
-/// Classes that need to be notified when the user is successfully authorized should implement this protocol
-public protocol StravaAuthorizerDelegate: class {
-
-    func didAuthorizeAthlete(_ athlete: Athlete?, withAccessToken accessToken: String)
+public enum StravaOauth {
+    case authorize(clientId: String, redirectUri: String)
+    case token(clientId: String, clientSecret: String, code: String)
 }
 
-/// Class that performs token exchange with Strava
-open class StravaAuthorizer {
+extension StravaOauth: TargetType {
 
-    open weak var delegate: StravaAuthorizerDelegate?
-
-    open let clientId: String
-    open let clientSecret: String
-    fileprivate let template = StravaAuthorizationTemplate()
-
-    public init(clientId: String, clientSecret: String) {
-        self.clientId = clientId
-        self.clientSecret = clientSecret
+    public var baseURL: URL {
+        return URL(string: "https://www.strava.com/oauth/")!
     }
 
-    open func requestAccessUrlWithRedirectUrl(_ url: String) -> URL {
-        return template.requestAccess(clientId: clientId, redirectUri: url).URL! as URL
-    }
-
-    open func authorizeWithUrl(_ url: URL) {
-        if let code = url.params["code"] {
-            exchangeTokenWithAuthorizationCode(code)
+    public var path: String {
+        switch self {
+        case .authorize: return "authorize"
+        case .token: return "token"
         }
     }
 
-    open func exchangeTokenWithAuthorizationCode(_ authorizationCode: String) {
-        let parameters = Parameters()
-            .add("client_id", clientId as AnyObject)
-            .add("client_secret", clientSecret as AnyObject)
-            .add("code", authorizationCode as AnyObject)
+    public var method: Moya.Method {
+        return .get
+    }
 
-        Request.request(.post, url: template.exchangeToken(), parameters: parameters, transformer: { json in
-                return (json["access_token"].string!, json["athlete"].athlete)
-            }) { [unowned self] response in
-                switch response {
-                case .success(let (accessToken, athlete)):
-                    self.delegate?.didAuthorizeAthlete(athlete, withAccessToken: accessToken)
-                case .failure(_): break
-                }
-            }
+    public var parameters: [String : Any]? {
+        switch self {
+        case let .authorize(clientId, redirectUri):
+            return ["client_id" : clientId, "redirect_uri" : redirectUri, "response_type" : "code"]
+        case let .token(clientId, clientSecret, code):
+            return ["client_id" : clientId, "client_secret" : clientSecret, "code" : code]
+        }
+    }
+
+    public var parameterEncoding: ParameterEncoding {
+        return URLEncoding.default
+    }
+
+    public var task: Task {
+        return .request
+    }
+
+    public var sampleData: Data {
+        return "".data(using: .utf8)!
     }
 }

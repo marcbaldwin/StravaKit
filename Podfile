@@ -2,14 +2,13 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'StravaKit' do
-  pod 'Alamofire'
+
+  pod 'Moya'
   pod 'SwiftyJSON'
-  pod 'URITemplate'
 
   target 'StravaKitTests' do
-    pod 'SwiftyJSON'
+    inherit! :search_paths
     pod 'Nimble'
-    pod 'Mockingjay'
   end
 
 end

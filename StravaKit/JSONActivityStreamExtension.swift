@@ -1,41 +1,31 @@
+import CoreLocation
 import SwiftyJSON
 
 extension JSON {
 
-    var activityStream: Stream {
+    public var activityStream: ActivityStream {
 
         let coordinates = self.coodinates()
-        let distances = dataArray("distance") as? [Distance]
-        let altitudes = dataArray("altitude") as? [Distance]
-        let speeds = dataArray("velocity_smooth") as? [Speed]
-        let times = dataArray("time") as? [Time]
+        let distances = dataArray("distance") as? [CLLocationDistance]
+        let altitudes = dataArray("altitude") as? [CLLocationDistance]
+        let speeds = dataArray("velocity_smooth") as? [CLLocationSpeed]
+        let times = dataArray("time") as? [TimeInterval]
 
-        var dataPoints = [DataPoint]()
-
-        for i in 0..<distances!.count {
-            let dataPoint = DataPointBuilder()
-                .distance(distances?[i])
-                .coordinate(coordinates?[i])
-                .elevation(altitudes?[i])
-                .speed(speeds?[i])
-                .time(times?[i])
-                .build()
-            dataPoints.append(dataPoint)
-        }
-
-        return dataPoints
+        return ActivityStream(
+            distance: distances, coordinate: coordinates, elevation: altitudes, speed: speeds, time: times
+        )
     }
 
-    fileprivate func dataArray(_ name: String) -> [AnyObject]? {
+    private func dataArray(_ name: String) -> [AnyObject]? {
         let rawArray = jsonWithType(name)
         return rawArray?.arrayObject as [AnyObject]?
     }
 
-    fileprivate func coodinates() -> [Coordinate]? {
+    private func coodinates() -> [CLLocationCoordinate2D]? {
         return jsonWithType("latlng")?.coordinates
     }
 
-    fileprivate func jsonWithType(_ type: String) -> JSON? {
+    private func jsonWithType(_ type: String) -> JSON? {
         for object in self {
             if object.1["type"].string == type {
                 return object.1["data"]

@@ -1,17 +1,19 @@
+import CoreLocation
+
 public struct Activity {
 
     public let id: Int
     public let name: String
-    public let distance: Distance
-    public let movingTime: Duration
-    public let elapsedTime: Duration
-    public let totalElevationGain: Distance
-    public let averageSpeed: Speed
-    public let maxSpeed: Speed
+    public let distance: CLLocationDistance
+    public let movingTime: CLLocationSpeed
+    public let elapsedTime: TimeInterval
+    public let totalElevationGain: CLLocationDistance
+    public let averageSpeed: CLLocationSpeed
+    public let maxSpeed: CLLocationSpeed
     public let type: String
     public let startDate: String
     public let localTimeZone: String
-    public let polyline: String
+    public let polyline: String?
     public let isStaticTrainer: Bool
     public let isCommute: Bool
     public let isManual: Bool
@@ -21,16 +23,16 @@ public struct Activity {
     public init(
         id: Int,
         name: String,
-        distance: Distance,
-        movingTime: Duration,
-        elapsedTime: Duration,
-        totalElevationGain: Distance,
-        averageSpeed: Speed,
-        maxSpeed: Speed,
+        distance: CLLocationDistance,
+        movingTime: TimeInterval,
+        elapsedTime: TimeInterval,
+        totalElevationGain: CLLocationDistance,
+        averageSpeed: CLLocationSpeed,
+        maxSpeed: CLLocationSpeed,
         type: String,
         startDate: String,
         localTimeZone: String,
-        polyline: String,
+        polyline: String?,
         isStaticTrainer: Bool,
         isCommute: Bool,
         isManual: Bool,
@@ -56,8 +58,9 @@ public struct Activity {
     }
 }
 
-extension Activity: Equatable { }
+extension Activity: Equatable {
 
-public func ==(lhs: Activity, rhs: Activity) -> Bool {
-    return lhs.id == rhs.id
+    public static func ==(lhs: Activity, rhs: Activity) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
