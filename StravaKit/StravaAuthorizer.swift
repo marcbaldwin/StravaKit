@@ -2,8 +2,14 @@ import Moya
 import Alamofire
 
 public enum StravaOauth {
-    case authorize(clientId: String, redirectUri: String)
     case token(clientId: String, clientSecret: String, code: String)
+
+    public static func authorize(clientId: String, redirectUri: String) -> URL {
+        return URL(string: "https://www.strava.com/oauth/authorize?response_type=code"
+            + "&client_id=\(clientId)"
+            + "&redirect_uri=\(redirectUri)"
+        )!
+    }
 }
 
 extension StravaOauth: TargetType {
@@ -14,19 +20,18 @@ extension StravaOauth: TargetType {
 
     public var path: String {
         switch self {
-        case .authorize: return "authorize"
         case .token: return "token"
         }
     }
 
     public var method: Moya.Method {
-        return .get
+        switch self {
+        case .token: return .post
+        }
     }
 
     public var parameters: [String : Any]? {
         switch self {
-        case let .authorize(clientId, redirectUri):
-            return ["client_id" : clientId, "redirect_uri" : redirectUri, "response_type" : "code"]
         case let .token(clientId, clientSecret, code):
             return ["client_id" : clientId, "client_secret" : clientSecret, "code" : code]
         }

@@ -2,7 +2,7 @@ import SwiftyJSON
 
 extension JSON {
 
-    var athlete: Athlete? {
+    public var athlete: Athlete? {
         guard
             let firstName = self["firstname"].string,
             let lastName = self["lastname"].string,
@@ -16,7 +16,8 @@ extension JSON {
         return Athlete(username: username, email: email,
                        firstName: firstName, lastName: lastName,
                        premium: premium,
-                       measurementPreference: measurementPreference)
+                       measurementPreference: measurementPreference
+        )
     }
 }
 

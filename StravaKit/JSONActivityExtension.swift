@@ -26,6 +26,7 @@ extension JSON {
             isCommute: self["commute"].boolValue,
             isManual: self["manual"].boolValue,
             averageHeartRate: self["average_heartrate"].floatValue,
-            maxHeartRate: self["max_heartrate"].floatValue)
+            maxHeartRate: self["max_heartrate"].floatValue
+        )
     }
 }
