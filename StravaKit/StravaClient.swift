@@ -1,8 +1,14 @@
 import Moya
 import Alamofire
 
+public enum StravaQuery {
+    case page(Int)
+    case before(Int)
+    case after(Int)
+}
+
 public enum StravaApi {
-    case athleteActivities(accessToken: String, page: Int, size: Int)
+    case athleteActivities(accessToken: String, query: StravaQuery, size: Int)
 }
 
 extension StravaApi: TargetType {
@@ -23,8 +29,8 @@ extension StravaApi: TargetType {
 
     public var parameters: [String : Any]? {
         switch self {
-        case let .athleteActivities(accessToken, page, size):
-            return ["access_token" : accessToken, "page" : page, "per_page" : size]
+        case let .athleteActivities(accessToken, query, size):
+            return ["access_token" : accessToken, query.key : query.value, "per_page" : size]
         }
     }
 
@@ -38,5 +44,24 @@ extension StravaApi: TargetType {
 
     public var sampleData: Data {
         return "".data(using: .utf8)!
+    }
+}
+
+extension StravaQuery {
+
+    public var key: String {
+        switch self {
+        case .page: return "page"
+        case .before: return "before"
+        case .after: return "after"
+        }
+    }
+
+    public var value: Any {
+        switch self {
+        case let .page(page): return page
+        case let .before(seconds): return seconds
+        case let .after(seconds): return seconds
+        }
     }
 }
