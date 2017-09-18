@@ -8,7 +8,7 @@ public enum StravaQuery {
 }
 
 public enum StravaApi {
-    case athleteActivities(accessToken: String, query: StravaQuery, size: Int)
+    case athleteActivities(accessToken: String, query: [StravaQuery], size: Int)
 }
 
 extension StravaApi: TargetType {
@@ -27,19 +27,21 @@ extension StravaApi: TargetType {
         return .get
     }
 
-    public var parameters: [String : Any]? {
+    public var task: Task {
         switch self {
         case let .athleteActivities(accessToken, query, size):
-            return ["access_token" : accessToken, query.key : query.value, "per_page" : size]
+            var params = [String : Any]()
+            params["access_token"] = accessToken
+            params["per_page"] = size
+            for (key, value) in query.flatMap({ $0.parameters }) {
+                params[key] = value
+            }
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }
 
-    public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
-    }
-
-    public var task: Task {
-        return .request
+    public var headers: [String : String]? {
+        return nil
     }
 
     public var sampleData: Data {
@@ -49,19 +51,11 @@ extension StravaApi: TargetType {
 
 extension StravaQuery {
 
-    public var key: String {
+    public var parameters: [String : Any] {
         switch self {
-        case .page: return "page"
-        case .before: return "before"
-        case .after: return "after"
-        }
-    }
-
-    public var value: Any {
-        switch self {
-        case let .page(page): return page
-        case let .before(seconds): return seconds
-        case let .after(seconds): return seconds
+        case let .page(page): return ["page" : page]
+        case let .before(seconds): return ["before" : seconds]
+        case let .after(seconds): return ["after" : seconds]
         }
     }
 }

@@ -30,19 +30,16 @@ extension StravaOauth: TargetType {
         }
     }
 
-    public var parameters: [String : Any]? {
+    public var task: Task {
         switch self {
         case let .token(clientId, clientSecret, code):
-            return ["client_id" : clientId, "client_secret" : clientSecret, "code" : code]
+            let params = ["client_id" : clientId, "client_secret" : clientSecret, "code" : code]
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }
 
-    public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
-    }
-
-    public var task: Task {
-        return .request
+    public var headers: [String: String]? {
+        return nil
     }
 
     public var sampleData: Data {

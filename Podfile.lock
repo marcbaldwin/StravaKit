@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (4.5.0)
-  - Moya (8.0.5):
-    - Moya/Core (= 8.0.5)
-  - Moya/Core (8.0.5):
+  - Alamofire (4.5.1)
+  - Moya (9.0.0):
+    - Moya/Core (= 9.0.0)
+  - Moya/Core (9.0.0):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - Nimble (7.0.1)
@@ -15,8 +15,8 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
