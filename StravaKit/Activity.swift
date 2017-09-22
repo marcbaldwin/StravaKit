@@ -5,7 +5,7 @@ public struct Activity {
     public let id: Int
     public let name: String
     public let distance: CLLocationDistance
-    public let movingTime: CLLocationSpeed
+    public let movingTime: TimeInterval
     public let elapsedTime: TimeInterval
     public let totalElevationGain: CLLocationDistance
     public let averageSpeed: CLLocationSpeed
