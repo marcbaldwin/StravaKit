@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
 
   s.subspec "Core" do |ss|
     ss.dependency "Moya"
-    ss.dependency 'SwiftyJSON'
     ss.framework  = "Foundation"
   end
 

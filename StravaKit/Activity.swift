@@ -1,6 +1,6 @@
 import CoreLocation
 
-public struct Activity {
+public struct Activity: Codable {
 
     public let id: Int
     public let name: String
@@ -13,49 +13,33 @@ public struct Activity {
     public let type: String
     public let startDate: String
     public let localTimeZone: String
-    public let polyline: String?
+    public let map: Map
     public let isStaticTrainer: Bool
     public let isCommute: Bool
     public let isManual: Bool
-    public let averageHeartRate: Float
-    public let maxHeartRate: Float
+    public let averageHeartRate: Float?
+    public let maxHeartRate: Int?
 
-    public init(
-        id: Int,
-        name: String,
-        distance: CLLocationDistance,
-        movingTime: TimeInterval,
-        elapsedTime: TimeInterval,
-        totalElevationGain: CLLocationDistance,
-        averageSpeed: CLLocationSpeed,
-        maxSpeed: CLLocationSpeed,
-        type: String,
-        startDate: String,
-        localTimeZone: String,
-        polyline: String?,
-        isStaticTrainer: Bool,
-        isCommute: Bool,
-        isManual: Bool,
-        averageHeartRate: Float,
-        maxHeartRate: Float) {
-        self.id = id
-        self.name = name
-        self.distance = distance
-        self.movingTime = movingTime
-        self.elapsedTime = elapsedTime
-        self.totalElevationGain = totalElevationGain
-        self.averageSpeed = averageSpeed
-        self.maxSpeed = maxSpeed
-        self.type = type
-        self.startDate = startDate
-        self.localTimeZone = localTimeZone
-        self.polyline = polyline
-        self.isStaticTrainer = isStaticTrainer
-        self.isCommute = isCommute
-        self.isManual = isManual
-        self.averageHeartRate = averageHeartRate
-        self.maxHeartRate = maxHeartRate
+    enum CodingKeys : String, CodingKey {
+        case id
+        case name
+        case distance
+        case movingTime = "moving_time"
+        case elapsedTime = "elapsed_time"
+        case totalElevationGain = "total_elevation_gain"
+        case averageSpeed = "average_speed"
+        case maxSpeed = "max_speed"
+        case type
+        case startDate = "start_date"
+        case localTimeZone = "timezone"
+        case map
+        case isStaticTrainer = "trainer"
+        case isCommute = "commute"
+        case isManual = "manual"
+        case averageHeartRate = "average_heartrate"
+        case maxHeartRate = "max_heartrate"
     }
+
 }
 
 extension Activity: Equatable {
