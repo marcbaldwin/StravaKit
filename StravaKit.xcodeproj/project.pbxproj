@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		497F1ED91FA0E228006E7020 /* AuthResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F1ED81FA0E228006E7020 /* AuthResponseTests.swift */; };
 		498478F61F99D48B006124F1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F51F99D48B006124F1 /* Route.swift */; };
 		498478F81F99D648006124F1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F71F99D648006124F1 /* Map.swift */; };
 		498478FA1F99D714006124F1 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F91F99D714006124F1 /* RouteTests.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		05BAD3CB19DF4A77E69E1A49 /* Pods_StravaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StravaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		497F1ED81FA0E228006E7020 /* AuthResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseTests.swift; sourceTree = "<group>"; };
 		498478F51F99D48B006124F1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		498478F71F99D648006124F1 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		498478F91F99D714006124F1 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
@@ -138,9 +140,9 @@
 			children = (
 				A027FE521C5AE29E00943798 /* Activity.swift */,
 				A027FE551C5AE29E00943798 /* Athlete.swift */,
+				498478FB1F99F01E006124F1 /* AuthResponse.swift */,
 				498478F71F99D648006124F1 /* Map.swift */,
 				498478F51F99D48B006124F1 /* Route.swift */,
-				498478FB1F99F01E006124F1 /* AuthResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -160,6 +162,7 @@
 				A027FE7D1C5AE42300943798 /* ActivityTests.swift */,
 				A0EBA5E81CFB82C300234F2D /* AthleteTests.swift */,
 				498478F91F99D714006124F1 /* RouteTests.swift */,
+				497F1ED81FA0E228006E7020 /* AuthResponseTests.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			files = (
 				A027FE801C5AE42300943798 /* ActivityTests.swift in Sources */,
 				498478FA1F99D714006124F1 /* RouteTests.swift in Sources */,
+				497F1ED91FA0E228006E7020 /* AuthResponseTests.swift in Sources */,
 				A0EBA5E91CFB82C300234F2D /* AthleteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

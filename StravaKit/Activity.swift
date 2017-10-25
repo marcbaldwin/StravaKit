@@ -18,7 +18,7 @@ public struct Activity: Codable {
     public let isCommute: Bool
     public let isManual: Bool
     public let averageHeartRate: Float?
-    public let maxHeartRate: Int?
+    public let maxHeartRate: Float?
 
     enum CodingKeys : String, CodingKey {
         case id

@@ -4,7 +4,7 @@ import Nimble
 
 class AthleteTests: XCTestCase {
 
-    func test_decode() throws {
+    func test_decode_athlete() throws {
         let jsonString = """
         {
             "profile": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1461461/751331/2/large.jpg",
@@ -87,11 +87,12 @@ class AthleteTests: XCTestCase {
         let jsonData = jsonString.data(using: .utf8)!
         let athlete = try JSONDecoder().decode(Athlete.self, from: jsonData)
 
-        expect(athlete.username) == "marc_baldwin"
+        expect(athlete.id) == 1461461
         expect(athlete.email) == "marc.baldwin88@gmail.com"
         expect(athlete.firstName) == "Marc"
         expect(athlete.lastName) == "Baldwin"
-        expect(athlete.premium) == false
+        expect(athlete.country) == "United Kingdom"
+        expect(athlete.hasPremium) == false
         expect(athlete.measurementPreference) == MeasurementPreference.meters
     }
 }

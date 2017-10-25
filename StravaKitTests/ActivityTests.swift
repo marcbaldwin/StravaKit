@@ -4,7 +4,7 @@ import Nimble
 
 class ActivityTests: XCTestCase {
 
-    func test_decode() throws {
+    func test_decode_activity() throws {
         let jsonString = """
         {
             "id": 8529483,
