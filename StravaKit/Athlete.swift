@@ -7,6 +7,8 @@ public struct Athlete: Codable {
     public let lastName: String
     public let country: String
     public let hasPremium: Bool
+
+    // MARK: Detailed representation only
     public let measurementPreference: MeasurementPreference?
 
     enum CodingKeys: String, CodingKey {

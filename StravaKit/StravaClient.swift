@@ -7,6 +7,7 @@ public enum StravaQuery {
 }
 
 public enum StravaApi {
+    case athlete(accessToken: String)
     case athleteActivities(accessToken: String, query: [StravaQuery], page: Int, pageSize: Int)
     case athleteRoutes(accessToken: String, page: Int, pageSize: Int)
 }
@@ -19,6 +20,7 @@ extension StravaApi: TargetType {
 
     public var path: String {
         switch self {
+        case .athlete: return "athlete"
         case .athleteActivities: return "athlete/activities"
         case .athleteRoutes: return "athlete/routes"
         }
@@ -30,6 +32,10 @@ extension StravaApi: TargetType {
 
     public var task: Task {
         switch self {
+
+        case let .athlete(accessToken):
+            let params = requestParameters(accessToken: accessToken)
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
 
         case let .athleteActivities(accessToken, query, page, pageSize):
             var params = requestParameters(accessToken: accessToken, page: page, pageSize: pageSize)
@@ -52,12 +58,15 @@ extension StravaApi: TargetType {
         return "".data(using: .utf8)!
     }
 
+    private func requestParameters(accessToken: String) -> [String : Any] {
+        return ["access_token" : accessToken]
+    }
+
     private func requestParameters(accessToken: String, page: Int, pageSize: Int) -> [String : Any] {
-        return [
-            "access_token" : accessToken,
-            "page" : page,
-            "per_page" : pageSize,
-        ]
+        var params = requestParameters(accessToken: accessToken)
+        params["page"] = page
+        params["per_page"] = pageSize
+        return params
     }
 }
 
