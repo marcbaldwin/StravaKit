@@ -7,14 +7,13 @@ Pod::Spec.new do |s|
   s.author       = { "marcbaldwin" => "marc.baldwin88@gmail.com" }
   s.source       = { :git => "https://github.com/marcbaldwin/StravaKit.git", :tag => s.version }
   s.source_files = "StravaKit/*.swift"
-  s.platform     = :ios, '9.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
-
   s.default_subspec = "Core"
 
   s.subspec "Core" do |ss|
-    ss.dependency "Moya"
     ss.framework  = "Foundation"
+    ss.dependency "Moya", '~> 10.0'
   end
 
 end

@@ -1,9 +1,9 @@
-platform :ios, '9.0'
+platform :ios, '8.0'
 use_frameworks!
 
 target 'StravaKit' do
 
-  pod 'Moya'
+  pod 'Moya', '~> 10.0'
 
   target 'StravaKitTests' do
     inherit! :search_paths
