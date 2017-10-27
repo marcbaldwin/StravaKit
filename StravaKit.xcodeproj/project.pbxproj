@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494F00591FA21E26000BDDE3 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494F00581FA21E26000BDDE3 /* URL+Extensions.swift */; };
 		497F1ED91FA0E228006E7020 /* AuthResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F1ED81FA0E228006E7020 /* AuthResponseTests.swift */; };
 		498478F61F99D48B006124F1 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F51F99D48B006124F1 /* Route.swift */; };
 		498478F81F99D648006124F1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F71F99D648006124F1 /* Map.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		05BAD3CB19DF4A77E69E1A49 /* Pods_StravaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StravaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		494F00581FA21E26000BDDE3 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		497F1ED81FA0E228006E7020 /* AuthResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseTests.swift; sourceTree = "<group>"; };
 		498478F51F99D48B006124F1 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		498478F71F99D648006124F1 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		494F00571FA21E13000BDDE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				494F00581FA21E26000BDDE3 /* URL+Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		A020DD501C8B58810030CDB6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 		A027FE381C5AE16A00943798 /* StravaKit */ = {
 			isa = PBXGroup;
 			children = (
+				494F00571FA21E13000BDDE3 /* Extensions */,
 				A027FE5E1C5AE2B100943798 /* Client */,
 				A020DD501C8B58810030CDB6 /* Network */,
 				A027FE511C5AE28500943798 /* Model */,
@@ -435,6 +446,7 @@
 				A027FE581C5AE29E00943798 /* Activity.swift in Sources */,
 				A020DD4A1C8B44990030CDB6 /* StravaError.swift in Sources */,
 				A027FE621C5AE2BD00943798 /* StravaClient.swift in Sources */,
+				494F00591FA21E26000BDDE3 /* URL+Extensions.swift in Sources */,
 				498478F61F99D48B006124F1 /* Route.swift in Sources */,
 				A05CD3681C5E55250051D962 /* StravaOauth.swift in Sources */,
 				498478FC1F99F01E006124F1 /* AuthResponse.swift in Sources */,
