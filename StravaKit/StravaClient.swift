@@ -10,6 +10,8 @@ public enum StravaApi {
     case athlete(accessToken: String)
     case athleteActivities(accessToken: String, query: [StravaQuery], page: Int, pageSize: Int)
     case athleteRoutes(accessToken: String, page: Int, pageSize: Int)
+    case upload(accessToken: String, externalId: String, url: URL, activityType: String)
+    case uploadStatus(accessToken: String, id: String)
 }
 
 extension StravaApi: TargetType {
@@ -23,11 +25,16 @@ extension StravaApi: TargetType {
         case .athlete: return "athlete"
         case .athleteActivities: return "athlete/activities"
         case .athleteRoutes: return "athlete/routes"
+        case .upload: return "uploads"
+        case let .uploadStatus(_, id): return "uploads/\(id)"
         }
     }
 
     public var method: Moya.Method {
-        return .get
+        switch self {
+        case .upload: return .post
+        default: return .get
+        }
     }
 
     public var task: Task {
@@ -46,6 +53,18 @@ extension StravaApi: TargetType {
 
         case let .athleteRoutes(accessToken, page, pageSize):
             let params = requestParameters(accessToken: accessToken, page: page, pageSize: pageSize)
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+
+        case let .upload(accessToken, externalId, url, activityType):
+            var params = requestParameters(accessToken: accessToken)
+            params["external_id"] = externalId
+            params["data_type"] = "gpx"
+            params["activity_type"] = activityType
+            let multipartFormData = [MultipartFormData(provider: .file(url), name: "file", fileName: "gpx.gpx", mimeType: "application/xml+gpx")]
+            return .uploadCompositeMultipart(multipartFormData, urlParameters: params)
+
+        case let .uploadStatus(accessToken, _):
+            let params = requestParameters(accessToken: accessToken)
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }
