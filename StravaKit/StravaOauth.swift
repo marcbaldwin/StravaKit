@@ -4,10 +4,11 @@ import Alamofire
 public enum StravaOauth {
     case token(clientId: String, clientSecret: String, code: String)
 
-    public static func authorize(clientId: String, redirectUri: String) -> URL {
+    public static func authorize(clientId: String, redirectUri: String, alwaysShowAuthorizationPrompt: Bool = false) -> URL {
         return URL(string: "https://www.strava.com/oauth/authorize?response_type=code"
             + "&client_id=\(clientId)"
             + "&redirect_uri=\(redirectUri)"
+            + "&approval_prompt=\(alwaysShowAuthorizationPrompt ? "force" : "auto")"
         )!
     }
 }
