@@ -10,7 +10,7 @@ public enum StravaApi {
     case athlete(accessToken: String)
     case athleteActivities(accessToken: String, query: [StravaQuery], page: Int, pageSize: Int)
     case athleteRoutes(accessToken: String, page: Int, pageSize: Int)
-    case upload(accessToken: String, externalId: String, url: URL, activityType: String)
+    case upload(accessToken: String, externalId: String, activityType: String, url: URL, fileName: String, dataType: String, mimeType: String)
     case uploadStatus(accessToken: String, id: String)
 }
 
@@ -55,12 +55,12 @@ extension StravaApi: TargetType {
             let params = requestParameters(accessToken: accessToken, page: page, pageSize: pageSize)
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
 
-        case let .upload(accessToken, externalId, url, activityType):
+        case let .upload(accessToken, externalId, activityType, url, fileName, dataType, mimeType):
             var params = requestParameters(accessToken: accessToken)
             params["external_id"] = externalId
-            params["data_type"] = "gpx"
+            params["data_type"] = dataType
             params["activity_type"] = activityType
-            let multipartFormData = [MultipartFormData(provider: .file(url), name: "file", fileName: "gpx.gpx", mimeType: "application/xml+gpx")]
+            let multipartFormData = [MultipartFormData(provider: .file(url), name: "file", fileName: fileName, mimeType: mimeType)]
             return .uploadCompositeMultipart(multipartFormData, urlParameters: params)
 
         case let .uploadStatus(accessToken, _):
