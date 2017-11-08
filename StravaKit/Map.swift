@@ -11,3 +11,13 @@ public struct Map: Codable {
         case summaryPolyline = "summary_polyline"
     }
 }
+
+extension Map: Equatable {
+
+    public static func ==(lhs: Map, rhs: Map) -> Bool {
+        return
+            lhs.id == rhs.id &&
+            lhs.polyline == rhs.polyline &&
+            lhs.summaryPolyline == rhs.summaryPolyline
+    }
+}
