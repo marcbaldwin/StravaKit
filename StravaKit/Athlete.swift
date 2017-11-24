@@ -5,7 +5,7 @@ public struct Athlete: Codable {
     public let email: String?
     public let firstName: String
     public let lastName: String
-    public let country: String
+    public let country: String?
     public let hasPremium: Bool
 
     // MARK: Detailed representation only
