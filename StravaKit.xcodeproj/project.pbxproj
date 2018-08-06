@@ -15,6 +15,7 @@
 		498478F81F99D648006124F1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F71F99D648006124F1 /* Map.swift */; };
 		498478FA1F99D714006124F1 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F91F99D714006124F1 /* RouteTests.swift */; };
 		498478FC1F99F01E006124F1 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478FB1F99F01E006124F1 /* AuthResponse.swift */; };
+		49C922AD21182660003C85B7 /* Strava+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C922AC21182660003C85B7 /* Strava+URL.swift */; };
 		4E5B3B1E07537545B76EE139 /* Pods_StravaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BAD3CB19DF4A77E69E1A49 /* Pods_StravaKit.framework */; };
 		976CF0CE58AE69D86DE23D6E /* Pods_StravaKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13962B2A89FA54839C19186 /* Pods_StravaKitTests.framework */; };
 		A020DD4A1C8B44990030CDB6 /* StravaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A020DD491C8B44990030CDB6 /* StravaError.swift */; };
@@ -50,6 +51,7 @@
 		498478F71F99D648006124F1 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		498478F91F99D714006124F1 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		498478FB1F99F01E006124F1 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		49C922AC21182660003C85B7 /* Strava+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strava+URL.swift"; sourceTree = "<group>"; };
 		81CAF88275AA45561FF5A48A /* Pods-StravaKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StravaKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StravaKit/Pods-StravaKit.debug.xcconfig"; sourceTree = "<group>"; };
 		841F8AE23BAC8E8B04B872DB /* Pods-StravaKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StravaKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-StravaKit/Pods-StravaKit.release.xcconfig"; sourceTree = "<group>"; };
 		A020DD491C8B44990030CDB6 /* StravaError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaError.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				A05CD3671C5E55250051D962 /* StravaOauth.swift */,
 				A027FE5F1C5AE2BD00943798 /* StravaClient.swift */,
+				49C922AC21182660003C85B7 /* Strava+URL.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				A020DD4A1C8B44990030CDB6 /* StravaError.swift in Sources */,
 				A027FE621C5AE2BD00943798 /* StravaClient.swift in Sources */,
 				494F00591FA21E26000BDDE3 /* URL+Extensions.swift in Sources */,
+				49C922AD21182660003C85B7 /* Strava+URL.swift in Sources */,
 				498478F61F99D48B006124F1 /* Route.swift in Sources */,
 				A05CD3681C5E55250051D962 /* StravaOauth.swift in Sources */,
 				498478FC1F99F01E006124F1 /* AuthResponse.swift in Sources */,
