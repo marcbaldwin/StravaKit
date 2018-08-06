@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "StravaKit"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.license      = "MIT"
   s.summary      = "Swift Strava client using Moya"
   s.homepage     = "https://github.com/marcbaldwin/StravaKit"
