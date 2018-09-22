@@ -264,7 +264,6 @@
 				A027FE321C5AE16A00943798 /* Frameworks */,
 				A027FE331C5AE16A00943798 /* Headers */,
 				A027FE341C5AE16A00943798 /* Resources */,
-				2FDCD1A4C935AB395CD3B965 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,7 +283,6 @@
 				A027FE3D1C5AE16A00943798 /* Frameworks */,
 				A027FE3E1C5AE16A00943798 /* Resources */,
 				357830EE99404599D1094B7A /* [CP] Embed Pods Frameworks */,
-				DFFECBE9D9BF2EE346CC15D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -354,43 +352,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2FDCD1A4C935AB395CD3B965 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StravaKit/Pods-StravaKit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		357830EE99404599D1094B7A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StravaKitTests/Pods-StravaKitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StravaKitTests/Pods-StravaKitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StravaKitTests/Pods-StravaKitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StravaKitTests/Pods-StravaKitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D76F416AE5DD881D5BA5A883 /* [CP] Check Pods Manifest.lock */ = {
@@ -409,21 +386,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFFECBE9D9BF2EE346CC15D4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StravaKitTests/Pods-StravaKitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCA9B7FA963155F48949E415 /* [CP] Check Pods Manifest.lock */ = {
