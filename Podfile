@@ -1,13 +1,14 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 inhibit_all_warnings!
 
-target 'StravaKit' do
-
+abstract_target 'AbstractStravaKit' do
   pod 'Moya', '~> 10.0'
 
+  target 'StravaKit' do
+  end
+
   target 'StravaKitTests' do
-    inherit! :search_paths
     pod 'Nimble'
   end
 
