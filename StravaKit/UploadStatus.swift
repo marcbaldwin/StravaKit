@@ -1,5 +1,5 @@
 
-public struct UploadStatus: Codable {
+public struct UploadStatus: Codable, Equatable {
 
     public let id: Int
     public let externalId: String

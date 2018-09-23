@@ -1,5 +1,5 @@
 
-public struct AuthResponse: Codable {
+public struct AuthResponse: Codable, Equatable {
 
     public let accessToken: String
     public let athlete: Athlete

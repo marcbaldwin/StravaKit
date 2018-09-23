@@ -1,5 +1,5 @@
 
-public struct Athlete: Codable {
+public struct Athlete: Codable, Equatable {
 
     public let id: Int
     public let email: String?

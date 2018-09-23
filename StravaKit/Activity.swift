@@ -1,6 +1,6 @@
 import CoreLocation
 
-public struct Activity: Codable {
+public struct Activity: Codable, Equatable {
 
     public let id: Int
     public let name: String
@@ -45,30 +45,6 @@ public struct Activity: Codable {
     }
 }
 
-extension Activity: Equatable {
-
-    public static func ==(lhs: Activity, rhs: Activity) -> Bool {
-        return
-            lhs.id == rhs.id &&
-            lhs.name == rhs.name &&
-            lhs.distance == rhs.distance &&
-            lhs.movingTime == rhs.movingTime &&
-            lhs.elapsedTime == rhs.elapsedTime &&
-            lhs.totalElevationGain == rhs.totalElevationGain &&
-            lhs.averageSpeed == rhs.averageSpeed &&
-            lhs.maxSpeed == rhs.maxSpeed &&
-            lhs.type == rhs.type &&
-            lhs.startDate == rhs.startDate &&
-            lhs.localTimeZone == rhs.localTimeZone &&
-            lhs.map == rhs.map &&
-            lhs.isStaticTrainer == rhs.isStaticTrainer &&
-            lhs.isCommute == rhs.isCommute &&
-            lhs.isManual == rhs.isManual &&
-            lhs.averageHeartRate == rhs.averageHeartRate &&
-            lhs.maxHeartRate == rhs.maxHeartRate
-    }
-}
-
 extension CLLocationCoordinate2D: Codable {
 
     public init(from decoder: Decoder) throws {
@@ -82,5 +58,12 @@ extension CLLocationCoordinate2D: Codable {
         var container = encoder.unkeyedContainer()
         try container.encode(latitude)
         try container.encode(longitude)
+    }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+
+    public static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 }
