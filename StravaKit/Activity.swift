@@ -1,6 +1,6 @@
 import CoreLocation
 
-public struct Activity: Decodable {
+public struct Activity: Codable {
 
     public let id: Int
     public let name: String
@@ -43,7 +43,6 @@ public struct Activity: Decodable {
         case averageHeartRate = "average_heartrate"
         case maxHeartRate = "max_heartrate"
     }
-
 }
 
 extension Activity: Equatable {
@@ -70,12 +69,18 @@ extension Activity: Equatable {
     }
 }
 
-extension CLLocationCoordinate2D: Decodable {
+extension CLLocationCoordinate2D: Codable {
 
     public init(from decoder: Decoder) throws {
         var unkyedContainer = try decoder.unkeyedContainer()
         let latitude = try unkyedContainer.decode(Double.self)
         let longitude = try unkyedContainer.decode(Double.self)
         self.init(latitude: latitude, longitude: longitude)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(latitude)
+        try container.encode(longitude)
     }
 }

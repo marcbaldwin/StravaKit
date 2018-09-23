@@ -55,6 +55,24 @@ final class ActivityTests: XCTestCase {
         expect(activity.averageHeartRate) == 138.8
         expect(activity.maxHeartRate) == 179.0
     }
+
+    func test_encode_activity() throws {
+        let jsonData = activityWithNoGpsJson.data(using: .utf8)!
+        let activity = try JSONDecoder().decode(Activity.self, from: jsonData)
+        let encoded = try JSONEncoder().encode(activity)
+        let decoded = try JSONDecoder().decode(Activity.self, from: encoded)
+
+        expect(decoded) == activity
+    }
+
+    func test_encode_activity_with_no_gps() throws {
+        let jsonData = activityWithNoGpsJson.data(using: .utf8)!
+        let activity = try JSONDecoder().decode(Activity.self, from: jsonData)
+        let encoded = try JSONEncoder().encode(activity)
+        let decoded = try JSONDecoder().decode(Activity.self, from: encoded)
+
+        expect(decoded) == activity
+    }
 }
 
 fileprivate extension ActivityTests {
