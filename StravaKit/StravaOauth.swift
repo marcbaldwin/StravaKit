@@ -4,16 +4,13 @@ import Alamofire
 public enum StravaOauth {
     case token(clientId: String, clientSecret: String, code: String)
 
-    public enum Scope {
-        case read, write
-    }
-
-    public static func authorize(clientId: String, redirectUri: String, scope: Scope = .read, alwaysShowAuthorizationPrompt: Bool = false) -> URL {
+    public static func authorize(clientId: String, redirectUri: String, viewPrivate: Bool = false, write: Bool = false, alwaysShowAuthorizationPrompt: Bool = false) -> URL {
+        let scope = [viewPrivate ? "view_private" : nil, write ? "write" : nil].compactMap({ $0 }).joined(separator: ",")
         return URL(string: "https://www.strava.com/oauth/authorize?response_type=code"
             + "&client_id=\(clientId)"
             + "&redirect_uri=\(redirectUri)"
             + "&approval_prompt=\(alwaysShowAuthorizationPrompt ? "force" : "auto")"
-            + (scope == .write ? "&scope=write" : "" )
+            + (scope.isEmpty ? "" : "&scope=\(scope)")
         )!
     }
 }
