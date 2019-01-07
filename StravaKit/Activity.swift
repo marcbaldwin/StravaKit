@@ -2,7 +2,7 @@ import CoreLocation
 
 public struct Activity: Codable, Equatable {
 
-    public let id: Int
+    public let id: Int64
     public let name: String
     public let distance: CLLocationDistance
     public let movingTime: TimeInterval

@@ -1,7 +1,7 @@
 
 public struct Athlete: Codable, Equatable {
 
-    public let id: Int
+    public let id: Int64
     public let email: String?
     public let firstName: String
     public let lastName: String
