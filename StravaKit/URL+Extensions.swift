@@ -2,7 +2,7 @@ import Foundation
 
 public extension URL {
 
-    public var params: [String : String] {
+    var params: [String : String] {
         var params = [String : String]()
 
         if let query = self.query {
