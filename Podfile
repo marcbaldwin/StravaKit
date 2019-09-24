@@ -2,14 +2,11 @@ platform :ios, '8.0'
 use_frameworks!
 inhibit_all_warnings!
 
-abstract_target 'AbstractStravaKit' do
-  pod 'Moya', '~> 10.0'
-
-  target 'StravaKit' do
-  end
+target 'StravaKit' do
+  pod 'Moya', '13.0.1'
 
   target 'StravaKitTests' do
-    pod 'Nimble'
+    pod 'Nimble', '8.0.1'
   end
 
 end
