@@ -1,4 +1,3 @@
-
 public struct Map: Codable, Equatable {
 
     public let id: String

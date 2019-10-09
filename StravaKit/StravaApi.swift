@@ -10,8 +10,30 @@ public enum StravaApi {
     case athlete(accessToken: String)
     case athleteActivities(accessToken: String, query: [StravaQuery], page: Int, pageSize: Int)
     case athleteRoutes(accessToken: String, page: Int, pageSize: Int)
-    case upload(accessToken: String, externalId: String, activityType: String, url: URL, fileName: String, dataType: String, mimeType: String)
+    case upload(accessToken: String, upload: ActivityUpload)
     case uploadStatus(accessToken: String, id: String)
+}
+
+extension StravaApi {
+
+    var accessToken: String {
+        switch self {
+        case let .athlete(accessToken):
+            return accessToken
+
+        case let .athleteActivities(accessToken, _, _, _):
+            return accessToken
+
+        case let .athleteRoutes(accessToken, _, _):
+            return accessToken
+
+        case let .upload(accessToken, _):
+            return accessToken
+
+        case let .uploadStatus(accessToken, _):
+            return accessToken
+        }
+    }
 }
 
 extension StravaApi: TargetType {
@@ -55,12 +77,20 @@ extension StravaApi: TargetType {
             let params = requestParameters(accessToken: accessToken, page: page, pageSize: pageSize)
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
 
-        case let .upload(accessToken, externalId, activityType, url, fileName, dataType, mimeType):
+        case let .upload(accessToken, upload):
             var params = requestParameters(accessToken: accessToken)
-            params["external_id"] = externalId
-            params["data_type"] = dataType
-            params["activity_type"] = activityType
-            let multipartFormData = [MultipartFormData(provider: .file(url), name: "file", fileName: fileName, mimeType: mimeType)]
+            params["external_id"] = upload.externalId
+            params["data_type"] = upload.dataType
+            params["activity_type"] = upload.activityType
+
+            let multipartFormData = [
+                MultipartFormData(
+                    provider: .file(upload.url),
+                    name: "file",
+                    fileName: upload.fileName,
+                    mimeType: upload.mimeType
+                )
+            ]
             return .uploadCompositeMultipart(multipartFormData, urlParameters: params)
 
         case let .uploadStatus(accessToken, _):
@@ -70,15 +100,15 @@ extension StravaApi: TargetType {
     }
 
     public var headers: [String : String]? {
-        return nil
+        return ["Authorization": "Bearer \(accessToken)"]
     }
 
     public var sampleData: Data {
-        return "".data(using: .utf8)!
+        fatalError()
     }
 
     private func requestParameters(accessToken: String) -> [String : Any] {
-        return ["access_token" : accessToken]
+        return ["access_token": accessToken]
     }
 
     private func requestParameters(accessToken: String, page: Int, pageSize: Int) -> [String : Any] {
@@ -93,8 +123,8 @@ extension StravaQuery {
 
     public var parameters: [String : Any] {
         switch self {
-        case let .before(seconds): return ["before" : seconds]
-        case let .after(seconds): return ["after" : seconds]
+        case let .before(seconds): return ["before": seconds]
+        case let .after(seconds): return ["after": seconds]
         }
     }
 }

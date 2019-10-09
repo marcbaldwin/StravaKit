@@ -1,4 +1,3 @@
-
 public struct Athlete: Codable, Equatable {
 
     public let id: Int64
@@ -8,7 +7,7 @@ public struct Athlete: Codable, Equatable {
     public let country: String?
     public let hasPremium: Bool
 
-    // MARK: Detailed representation only
+    // Detailed representation only
     public let measurementPreference: MeasurementPreference?
 
     enum CodingKeys: String, CodingKey {

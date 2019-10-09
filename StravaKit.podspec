@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.subspec "Core" do |ss|
     ss.framework  = "Foundation"
-    ss.dependency "Moya", '~> 13'
+    ss.dependency 'Moya/RxSwift', '~> 13' 
   end
 
 end

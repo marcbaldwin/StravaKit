@@ -2,7 +2,7 @@ import XCTest
 import Nimble
 @testable import StravaKit
 
-class UploadStatusTests: XCTestCase {
+class ActivityUploadStatusTests: XCTestCase {
 
     func test_decode_route() throws {
         let jsonString = """
@@ -15,7 +15,7 @@ class UploadStatusTests: XCTestCase {
             }
         """
         let jsonData = jsonString.data(using: .utf8)!
-        let uploadStatus = try JSONDecoder().decode(UploadStatus.self, from: jsonData)
+        let uploadStatus = try JSONDecoder().decode(ActivityUploadStatus.self, from: jsonData)
 
         expect(uploadStatus.id) == 16486788
         expect(uploadStatus.externalId) == "test.fit"

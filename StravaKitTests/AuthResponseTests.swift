@@ -8,6 +8,8 @@ class AuthResponseTests: XCTestCase {
         let jsonString = """
             {
                 "access_token": "83ebeabdec09f6670863766f792ead24d61fe3f9",
+                "refresh_token": "abcd",
+                "expires_at": 12345,
                 "athlete": {
                     "id": 227615,
                     "resource_state": 2,
@@ -29,7 +31,9 @@ class AuthResponseTests: XCTestCase {
         let jsonData = jsonString.data(using: .utf8)!
         let authResponse = try JSONDecoder().decode(AuthResponse.self, from: jsonData)
 
+        expect(authResponse.refreshToken) == "abcd"
         expect(authResponse.accessToken) == "83ebeabdec09f6670863766f792ead24d61fe3f9"
+        expect(authResponse.accessTokenExpiry) == 12345
         expect(authResponse.athlete.id) == 227615
         expect(authResponse.athlete.email) == "john@applestrava.com"
         expect(authResponse.athlete.firstName) == "John"
@@ -42,6 +46,8 @@ class AuthResponseTests: XCTestCase {
         let jsonString = """
             {
                 "access_token": "83ebeabdec09f6670863766f792ead24d61fe3f9",
+                "refresh_token": "abcd",
+                "expires_at": 12345,
                 "athlete": {
                     "id": 227615,
                     "resource_state": 2,
@@ -60,7 +66,9 @@ class AuthResponseTests: XCTestCase {
         let jsonData = jsonString.data(using: .utf8)!
         let authResponse = try JSONDecoder().decode(AuthResponse.self, from: jsonData)
 
+        expect(authResponse.refreshToken) == "abcd"
         expect(authResponse.accessToken) == "83ebeabdec09f6670863766f792ead24d61fe3f9"
+        expect(authResponse.accessTokenExpiry) == 12345
         expect(authResponse.athlete.id) == 227615
         expect(authResponse.athlete.email) == "john@applestrava.com"
         expect(authResponse.athlete.firstName) == "John"

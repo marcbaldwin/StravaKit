@@ -1,5 +1,4 @@
-
-public struct UploadStatus: Codable, Equatable {
+public struct ActivityUploadStatus: Codable, Equatable {
 
     public let id: Int64
     public let externalId: String
