@@ -3,7 +3,7 @@ import Moya
 extension Response {
 
     func decode<T: Decodable>(type: T.Type) throws -> T {
-        if statusCode == 200 {
+        if statusCode >= 200 && statusCode <= 299 {
             return try JSONDecoder().decode(type, from: data)
         }
 
