@@ -1,7 +1,7 @@
 public struct ActivityUploadStatus: Codable, Equatable {
 
     public let id: Int64
-    public let externalId: String
+    public let externalId: String?
     public let error: String?
     public let status: String
     public let activityId: Int64?
