@@ -79,9 +79,9 @@ extension StravaApi: TargetType {
 
         case let .upload(accessToken, upload):
             var params = requestParameters(accessToken: accessToken)
-            params["external_id"] = upload.externalId
-            params["data_type"] = upload.dataType
-            params["activity_type"] = upload.activityType
+            params["external_id"] = upload.externalId.utf16
+            params["data_type"] = upload.dataType.utf16
+            params["activity_type"] = upload.activityType.utf16
 
             let multipartFormData = [
                 MultipartFormData(
