@@ -16,7 +16,6 @@ class AthleteTests: XCTestCase {
             "mutual_friend_count": 0,
             "state": "",
             "friend": null,
-            "email": "marc.baldwin88@gmail.com",
             "shoes": [],
             "measurement_preference": "meters",
             "profile_medium": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/1461461/751331/2/medium.jpg",
@@ -88,7 +87,6 @@ class AthleteTests: XCTestCase {
         let athlete = try JSONDecoder().decode(Athlete.self, from: jsonData)
 
         expect(athlete.id) == 1461461
-        expect(athlete.email) == "marc.baldwin88@gmail.com"
         expect(athlete.firstName) == "Marc"
         expect(athlete.lastName) == "Baldwin"
         expect(athlete.country) == "United Kingdom"

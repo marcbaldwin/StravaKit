@@ -1,7 +1,6 @@
 public struct Athlete: Codable, Equatable {
 
     public let id: Int64
-    public let email: String?
     public let firstName: String
     public let lastName: String
     public let country: String?
@@ -12,7 +11,6 @@ public struct Athlete: Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case email
         case firstName = "firstname"
         case lastName = "lastname"
         case country
