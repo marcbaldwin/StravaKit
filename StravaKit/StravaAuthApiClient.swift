@@ -23,7 +23,7 @@ public final class StravaAuthApiClient {
         )!
     }
 
-    public func authorize(url: URL) -> Single<AuthResponse> {
+    public func authorize(url: URL) -> Single<(AuthResponse, [String])> {
         guard let code = url.params["code"] else {
             let error = url.params["error"]
             switch error {
@@ -35,9 +35,11 @@ public final class StravaAuthApiClient {
             }
         }
 
+        let scopes = url.params["scope"]?.components(separatedBy: ",") ?? []
+
         return authApi.rx
             .request(.authorize(clientId: clientId, clientSecret: clientSecret, code: code))
-            .map { response in try response.decode(type: AuthResponse.self) }
+            .map { response in try (response.decode(type: AuthResponse.self), scopes) }
     }
 
     public func accessToken(authDetails: AuthDetails) -> Single<String> {
