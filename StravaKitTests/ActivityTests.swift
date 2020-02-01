@@ -16,6 +16,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.totalElevationGain) == 566.0
         expect(activity.type) == "Ride"
         expect(activity.startDate) == "2013-08-24T00:04:12Z"
+        expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
         expect(activity.start!.latitude) == 37.793551
         expect(activity.start!.longitude) == -122.2686
@@ -43,6 +44,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.totalElevationGain) == 566.0
         expect(activity.type) == "Ride"
         expect(activity.startDate) == "2013-08-24T00:04:12Z"
+        expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
         expect(activity.start).to(beNil())
         expect(activity.end).to(beNil())

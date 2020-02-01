@@ -12,6 +12,7 @@ public struct Activity: Codable, Equatable {
     public let maxSpeed: CLLocationSpeed
     public let type: String
     public let startDate: String
+    public let localStartDate: String
     public let localTimeZone: String
     public let start: CLLocationCoordinate2D?
     public let end: CLLocationCoordinate2D?
@@ -33,6 +34,7 @@ public struct Activity: Codable, Equatable {
         case maxSpeed = "max_speed"
         case type
         case startDate = "start_date"
+        case localStartDate = "start_date_local"
         case localTimeZone = "timezone"
         case start = "start_latlng"
         case end = "end_latlng"
