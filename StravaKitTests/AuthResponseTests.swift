@@ -22,7 +22,6 @@ class AuthResponseTests: XCTestCase {
                     "country": "United States",
                     "sex": "M",
                     "premium": true,
-                    "email": "john@applestrava.com",
                     "created_at": "2008-01-01T17:44:00Z",
                     "updated_at": "2013-09-04T20:00:50Z"
                 }
@@ -35,7 +34,6 @@ class AuthResponseTests: XCTestCase {
         expect(authResponse.accessToken) == "83ebeabdec09f6670863766f792ead24d61fe3f9"
         expect(authResponse.accessTokenExpiry) == 12345
         expect(authResponse.athlete.id) == 227615
-        expect(authResponse.athlete.email) == "john@applestrava.com"
         expect(authResponse.athlete.firstName) == "John"
         expect(authResponse.athlete.lastName) == "Applestrava"
         expect(authResponse.athlete.country) == "United States"
@@ -57,7 +55,6 @@ class AuthResponseTests: XCTestCase {
                     "profile": "http://pics.com/227615/large.jpg",
                     "sex": "M",
                     "premium": false,
-                    "email": "john@applestrava.com",
                     "created_at": "2008-01-01T17:44:00Z",
                     "updated_at": "2013-09-04T20:00:50Z"
                 }
@@ -70,7 +67,6 @@ class AuthResponseTests: XCTestCase {
         expect(authResponse.accessToken) == "83ebeabdec09f6670863766f792ead24d61fe3f9"
         expect(authResponse.accessTokenExpiry) == 12345
         expect(authResponse.athlete.id) == 227615
-        expect(authResponse.athlete.email) == "john@applestrava.com"
         expect(authResponse.athlete.firstName) == "John"
         expect(authResponse.athlete.lastName) == "Applestrava"
         expect(authResponse.athlete.country).to(beNil())
