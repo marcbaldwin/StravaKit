@@ -18,6 +18,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.startDate) == "2013-08-24T00:04:12Z"
         expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
+        expect(activity.utcOffset) == -28800
         expect(activity.start!.latitude) == 37.793551
         expect(activity.start!.longitude) == -122.2686
         expect(activity.end!.latitude) == 37.792836
@@ -46,6 +47,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.startDate) == "2013-08-24T00:04:12Z"
         expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
+        expect(activity.utcOffset) == -28800
         expect(activity.start).to(beNil())
         expect(activity.end).to(beNil())
         expect(activity.map.summaryPolyline).to(beNil())
@@ -99,6 +101,7 @@ fileprivate extension ActivityTests {
             "start_date": "2013-08-24T00:04:12Z",
             "start_date_local": "2013-08-23T17:04:12Z",
             "timezone": "(GMT-08:00) America/Los_Angeles",
+            "utc_offset" : -28800,
             "start_latlng": [
                              37.793551,
                              -122.2686
@@ -158,6 +161,7 @@ fileprivate extension ActivityTests {
             "start_date": "2013-08-24T00:04:12Z",
             "start_date_local": "2013-08-23T17:04:12Z",
             "timezone": "(GMT-08:00) America/Los_Angeles",
+            "utc_offset" : -28800,
             "start_latlng": null,
             "end_latlng": null,
             "location_city": "Oakland",

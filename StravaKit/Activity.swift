@@ -14,6 +14,7 @@ public struct Activity: Codable, Equatable {
     public let startDate: String
     public let localStartDate: String
     public let localTimeZone: String
+    public let utcOffset: Int64
     public let start: CLLocationCoordinate2D?
     public let end: CLLocationCoordinate2D?
     public let map: Map
@@ -36,6 +37,7 @@ public struct Activity: Codable, Equatable {
         case startDate = "start_date"
         case localStartDate = "start_date_local"
         case localTimeZone = "timezone"
+        case utcOffset = "utc_offset"
         case start = "start_latlng"
         case end = "end_latlng"
         case map
