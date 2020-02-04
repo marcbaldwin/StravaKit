@@ -1,4 +1,4 @@
-public struct Athlete: Codable, Equatable {
+public struct Athlete: Codable, Equatable, Hashable {
 
     public let id: Int64
     public let firstName: String
@@ -19,7 +19,7 @@ public struct Athlete: Codable, Equatable {
     }
 }
 
-public enum MeasurementPreference: String, Codable {
+public enum MeasurementPreference: String, Codable, Equatable, Hashable {
     case meters
     case feet
 }

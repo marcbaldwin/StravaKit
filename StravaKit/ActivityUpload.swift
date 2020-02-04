@@ -1,4 +1,4 @@
-public struct ActivityUpload {
+public struct ActivityUpload: Equatable, Hashable {
 
     public let externalId: String
     public let activityType: String

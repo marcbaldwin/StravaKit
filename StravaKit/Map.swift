@@ -1,4 +1,4 @@
-public struct Map: Codable, Equatable {
+public struct Map: Codable, Equatable, Hashable {
 
     public let id: String
     public let polyline: String?

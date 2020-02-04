@@ -1,4 +1,4 @@
-public struct AuthDetails: Codable, Equatable {
+public struct AuthDetails: Codable, Equatable, Hashable {
 
     public let refreshToken: String
     public let accessToken: String

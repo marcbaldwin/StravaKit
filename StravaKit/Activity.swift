@@ -1,6 +1,6 @@
 import CoreLocation
 
-public struct Activity: Codable, Equatable {
+public struct Activity: Codable, Equatable, Hashable {
 
     public let id: Int64
     public let name: String
@@ -15,8 +15,8 @@ public struct Activity: Codable, Equatable {
     public let localStartDate: String
     public let localTimeZone: String
     public let utcOffset: Int64
-    public let start: CLLocationCoordinate2D?
-    public let end: CLLocationCoordinate2D?
+    public let start: Coordinate?
+    public let end: Coordinate?
     public let map: Map
     public let isStaticTrainer: Bool
     public let isCommute: Bool
@@ -46,28 +46,5 @@ public struct Activity: Codable, Equatable {
         case isManual = "manual"
         case averageHeartRate = "average_heartrate"
         case maxHeartRate = "max_heartrate"
-    }
-}
-
-extension CLLocationCoordinate2D: Codable {
-
-    public init(from decoder: Decoder) throws {
-        var unkyedContainer = try decoder.unkeyedContainer()
-        let latitude = try unkyedContainer.decode(Double.self)
-        let longitude = try unkyedContainer.decode(Double.self)
-        self.init(latitude: latitude, longitude: longitude)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        try container.encode(latitude)
-        try container.encode(longitude)
-    }
-}
-
-extension CLLocationCoordinate2D: Equatable {
-
-    public static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
-        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 }
