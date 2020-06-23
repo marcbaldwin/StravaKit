@@ -14,16 +14,16 @@ public final class StravaAuthApiClient {
         self.clientSecret = clientSecret
     }
 
-    public func authorizeUrl(redirectUri: String, alwaysShowAuthorizationPrompt: Bool = false, scope: String) -> URL {
+    public func authorizeUrl(redirectUri: String, alwaysShowAuthorizationPrompt: Bool = false, scopes: StravaAuthScope...) -> URL {
         return URL(string: "https://www.strava.com/oauth/mobile/authorize?response_type=code"
             + "&client_id=\(clientId)"
             + "&redirect_uri=\(redirectUri)"
             + "&approval_prompt=\(alwaysShowAuthorizationPrompt ? "force" : "auto")"
-            + "&scope=\(scope)"
+            + "&scope=\(scopes.map({ $0.rawValue }).joined(separator: ","))"
         )!
     }
 
-    public func authorize(url: URL) -> Single<(AuthResponse, [String])> {
+    public func authorize(url: URL) -> Single<(AuthResponse, [StravaAuthScope])> {
         guard let code = url.params["code"] else {
             let error = url.params["error"]
             switch error {
@@ -35,7 +35,7 @@ public final class StravaAuthApiClient {
             }
         }
 
-        let scopes = url.params["scope"]?.components(separatedBy: ",") ?? []
+        let scopes = url.params["scope"]?.components(separatedBy: ",").compactMap { StravaAuthScope(rawValue: $0) } ?? []
 
         return authApi.rx
             .request(.authorize(clientId: clientId, clientSecret: clientSecret, code: code))

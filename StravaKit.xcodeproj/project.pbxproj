@@ -16,6 +16,7 @@
 		498478F81F99D648006124F1 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F71F99D648006124F1 /* Map.swift */; };
 		498478FA1F99D714006124F1 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478F91F99D714006124F1 /* RouteTests.swift */; };
 		498478FC1F99F01E006124F1 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498478FB1F99F01E006124F1 /* AuthResponse.swift */; };
+		49A536DC24A23C3000E05404 /* StravaAuthScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A536DB24A23C3000E05404 /* StravaAuthScope.swift */; };
 		49AD062C234C99F50079C977 /* StravaApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AD062B234C99F50079C977 /* StravaApiClient.swift */; };
 		49AD062E234C9B5F0079C977 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AD062D234C9B5F0079C977 /* ErrorResponse.swift */; };
 		49AD0630234C9D870079C977 /* StravaAuthApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AD062F234C9D870079C977 /* StravaAuthApiClient.swift */; };
@@ -63,6 +64,7 @@
 		498478F71F99D648006124F1 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		498478F91F99D714006124F1 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		498478FB1F99F01E006124F1 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		49A536DB24A23C3000E05404 /* StravaAuthScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaAuthScope.swift; sourceTree = "<group>"; };
 		49AD062B234C99F50079C977 /* StravaApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaApiClient.swift; sourceTree = "<group>"; };
 		49AD062D234C9B5F0079C977 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		49AD062F234C9D870079C977 /* StravaAuthApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaAuthApiClient.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				A05CD3671C5E55250051D962 /* StravaAuthApi.swift */,
 				49AD062F234C9D870079C977 /* StravaAuthApiClient.swift */,
+				49A536DB24A23C3000E05404 /* StravaAuthScope.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				A027FE581C5AE29E00943798 /* Activity.swift in Sources */,
 				49AD0634234CA72B0079C977 /* Errors.swift in Sources */,
 				49AD0632234CA1A40079C977 /* ResponseErrorHandling.swift in Sources */,
+				49A536DC24A23C3000E05404 /* StravaAuthScope.swift in Sources */,
 				A027FE621C5AE2BD00943798 /* StravaApi.swift in Sources */,
 				494F00591FA21E26000BDDE3 /* URL+Extensions.swift in Sources */,
 				49C922AD21182660003C85B7 /* Strava+URL.swift in Sources */,
