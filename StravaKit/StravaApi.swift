@@ -10,6 +10,7 @@ public enum StravaApi {
     case athlete(accessToken: String)
     case athleteActivities(accessToken: String, query: [StravaQuery], page: Int, pageSize: Int)
     case athleteRoutes(accessToken: String, page: Int, pageSize: Int)
+    case routeGpx(accessToken: String, id: Int64)
     case upload(accessToken: String, upload: ActivityUpload)
     case uploadStatus(accessToken: String, id: String)
 }
@@ -25,6 +26,9 @@ extension StravaApi {
             return accessToken
 
         case let .athleteRoutes(accessToken, _, _):
+            return accessToken
+
+        case let .routeGpx(accessToken, _):
             return accessToken
 
         case let .upload(accessToken, _):
@@ -47,6 +51,7 @@ extension StravaApi: TargetType {
         case .athlete: return "athlete"
         case .athleteActivities: return "athlete/activities"
         case .athleteRoutes: return "athlete/routes"
+        case let .routeGpx(_, id): return "routes/\(id)/export_gpx"
         case .upload: return "uploads"
         case let .uploadStatus(_, id): return "uploads/\(id)"
         }
@@ -75,6 +80,10 @@ extension StravaApi: TargetType {
 
         case let .athleteRoutes(accessToken, page, pageSize):
             let params = requestParameters(accessToken: accessToken, page: page, pageSize: pageSize)
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+
+        case let .routeGpx(accessToken, _):
+            let params = requestParameters(accessToken: accessToken)
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
 
         case let .upload(accessToken, upload):
