@@ -35,6 +35,7 @@
 		A027FE5B1C5AE29E00943798 /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE551C5AE29E00943798 /* Athlete.swift */; };
 		A027FE621C5AE2BD00943798 /* StravaApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE5F1C5AE2BD00943798 /* StravaApi.swift */; };
 		A027FE801C5AE42300943798 /* ActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A027FE7D1C5AE42300943798 /* ActivityTests.swift */; };
+		A02A59CD269CA2D80058C60A /* Moya+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A59CC269CA2D80058C60A /* Moya+RxSwift.swift */; };
 		A05CD3681C5E55250051D962 /* StravaAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05CD3671C5E55250051D962 /* StravaAuthApi.swift */; };
 		A06A2E931C5C2E810009D5E4 /* activities_1_2.json in Resources */ = {isa = PBXBuildFile; fileRef = A06A2E921C5C2E810009D5E4 /* activities_1_2.json */; };
 		A0EBA5E91CFB82C300234F2D /* AthleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EBA5E81CFB82C300234F2D /* AthleteTests.swift */; };
@@ -85,6 +86,7 @@
 		A027FE551C5AE29E00943798 /* Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
 		A027FE5F1C5AE2BD00943798 /* StravaApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaApi.swift; sourceTree = "<group>"; };
 		A027FE7D1C5AE42300943798 /* ActivityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
+		A02A59CC269CA2D80058C60A /* Moya+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+RxSwift.swift"; sourceTree = "<group>"; };
 		A05CD3671C5E55250051D962 /* StravaAuthApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaAuthApi.swift; sourceTree = "<group>"; };
 		A06A2E921C5C2E810009D5E4 /* activities_1_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activities_1_2.json; sourceTree = "<group>"; };
 		A0EBA5E81CFB82C300234F2D /* AthleteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteTests.swift; sourceTree = "<group>"; };
@@ -127,9 +129,10 @@
 		494F00571FA21E13000BDDE3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A02A59CC269CA2D80058C60A /* Moya+RxSwift.swift */,
+				49AD0631234CA1A40079C977 /* ResponseErrorHandling.swift */,
 				49C922AC21182660003C85B7 /* Strava+URL.swift */,
 				494F00581FA21E26000BDDE3 /* URL+Extensions.swift */,
-				49AD0631234CA1A40079C977 /* ResponseErrorHandling.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				492D15671FAA22520013DB7D /* ActivityUploadStatus.swift in Sources */,
+				A02A59CD269CA2D80058C60A /* Moya+RxSwift.swift in Sources */,
 				49F9D9B423E980C100330A1C /* Coordinate.swift in Sources */,
 				498478F81F99D648006124F1 /* Map.swift in Sources */,
 				A027FE581C5AE29E00943798 /* Activity.swift in Sources */,
