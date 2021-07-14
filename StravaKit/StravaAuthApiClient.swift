@@ -1,11 +1,11 @@
-import Moya
+import Alamofire
 import RxSwift
 
 public final class StravaAuthApiClient {
 
     public var onAuthDetailsRefreshed: ((AuthDetails) -> Void)? = nil
 
-    private let authApi = MoyaProvider<StravaAuthApi>()
+    private let baseURL = "https://www.strava.com/oauth/token"
     private let clientId: String
     private let clientSecret: String
 
@@ -35,11 +35,19 @@ public final class StravaAuthApiClient {
             }
         }
 
-        let scopes = url.params["scope"]?.components(separatedBy: ",").compactMap { StravaAuthScope(rawValue: $0) } ?? []
+        let scopes = url.params["scope"]?
+            .components(separatedBy: ",")
+            .compactMap { StravaAuthScope(rawValue: $0) } ?? []
 
-        return authApi.rx
-            .request(.authorize(clientId: clientId, clientSecret: clientSecret, code: code))
-            .map { response in try (response.decode(type: AuthResponse.self), scopes) }
+        let params = [
+            "client_id" : clientId,
+            "client_secret" : clientSecret,
+            "code" : code,
+            "grant_type": "authorization_code"
+        ]
+
+        return dataRequest(params: params, type: AuthResponse.self)
+            .map { response in (response, scopes) }
     }
 
     public func accessToken(authDetails: AuthDetails) -> Single<String> {
@@ -51,12 +59,28 @@ public final class StravaAuthApiClient {
     }
 
     public func refreshAccessToken(refreshToken: String) -> Single<String> {
-        return authApi.rx
-            .request(.refreshToken(clientId: clientId, clientSecret: clientSecret, refreshToken: refreshToken))
-            .map { response in try response.decode(type: AuthRefreshTokenResponse.self) }
+        let params = [
+            "client_id" : clientId,
+            "client_secret" : clientSecret,
+            "refresh_token": refreshToken,
+            "grant_type": "refresh_token"
+        ]
+
+        return dataRequest(params: params, type: AuthRefreshTokenResponse.self)
             .do(onSuccess: { [weak self] response in
                 self?.onAuthDetailsRefreshed?(response.authDetails)
             })
             .map { $0.accessToken }
+    }
+
+    private func dataRequest<T: Decodable>(params: [String: Any] = [:], type: T.Type) -> Single<T> {
+        Alamofire.Session.default
+            .request(
+                URL(string: baseURL)!,
+                method: .post,
+                parameters: params
+            )
+            .rx.responseData()
+            .map { try $0.decode(type: type) }
     }
 }

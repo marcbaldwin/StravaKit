@@ -1,6 +1,6 @@
-import Moya
+import Foundation
 
-extension Response {
+extension HTTPDataResponse {
 
     func decode<T: Decodable>(type: T.Type) throws -> T {
         return try JSONDecoder().decode(type, from: try decode())

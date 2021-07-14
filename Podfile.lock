@@ -1,30 +1,24 @@
 PODS:
   - Alamofire (5.4.3)
-  - Moya (14.0.0):
-    - Moya/Core (= 14.0.0)
-  - Moya/Core (14.0.0):
-    - Alamofire (~> 5.0)
   - Nimble (9.2.0)
   - RxSwift (6.2.0)
 
 DEPENDENCIES:
-  - Moya (~> 14)
+  - Alamofire (~> 5)
   - Nimble (~> 9)
   - RxSwift (~> 6)
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Moya
     - Nimble
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: 1711bcb524b22e94d02943e5f5f6bcc43b865971
+PODFILE CHECKSUM: 984d5b6e519a48f49d6b501c57c223076c48027a
 
 COCOAPODS: 1.10.1

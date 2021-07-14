@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'StravaKit' do
-  pod 'Moya', '~> 14'
+  pod 'Alamofire', '~> 5'
   pod 'RxSwift', '~> 6'
 
   target 'StravaKitTests' do
