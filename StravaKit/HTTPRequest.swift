@@ -23,7 +23,7 @@ extension Reactive where Base: DataRequest {
                     subscriber(.success(HTTPDataResponse(response: packedResponse.response!, data: data)))
 
                 case let .failure(error):
-                    subscriber(.failure(error as Error))
+                    subscriber(.error(error as Error))
                 }
             }
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = 'StravaKit'
-  s.version       = '4.1.0'
+  s.version       = '3.1.0'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.summary       = 'Swift Strava client using Moya'
   s.homepage      = 'https://github.com/marcbaldwin/StravaKit'
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.swift_version = '5'
   s.framework     = 'Foundation'
   s.dependency      'Alamofire', '~> 5'
-  s.dependency      'RxSwift', '~> 6'
+  s.dependency      'RxSwift', '~> 5'
 end

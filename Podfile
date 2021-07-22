@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 target 'StravaKit' do
   pod 'Alamofire', '~> 5'
-  pod 'RxSwift', '~> 6'
+  pod 'RxSwift', '~> 5'
 
   target 'StravaKitTests' do
     pod 'Nimble', '~> 9'

@@ -58,7 +58,7 @@ public final class StravaApiClient {
             .flatMap { accessToken in
                 self.dataRequest(path: path, parameters: parameters, accessToken: accessToken)
             }
-            .catch { error -> Single<Data> in
+            .catchError { error -> Single<Data> in
                 guard let stravaError = error as? StravaError, stravaError == .accessTokenInvalid else {
                     return .error(error)
                 }
