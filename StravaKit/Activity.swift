@@ -15,8 +15,6 @@ public struct Activity: Codable, Equatable, Hashable {
     public let localStartDate: String
     public let localTimeZone: String
     public let utcOffset: Int64
-    public let start: Coordinate?
-    public let end: Coordinate?
     public let map: Map
     public let isStaticTrainer: Bool
     public let isCommute: Bool
@@ -38,8 +36,6 @@ public struct Activity: Codable, Equatable, Hashable {
         case localStartDate = "start_date_local"
         case localTimeZone = "timezone"
         case utcOffset = "utc_offset"
-        case start = "start_latlng"
-        case end = "end_latlng"
         case map
         case isStaticTrainer = "trainer"
         case isCommute = "commute"
