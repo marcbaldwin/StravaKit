@@ -15,7 +15,7 @@ public struct Activity: Codable, Equatable, Hashable {
     public let localStartDate: String
     public let localTimeZone: String
     public let utcOffset: Int64
-    public let map: Map
+    public let map: Map?
     public let isStaticTrainer: Bool
     public let isCommute: Bool
     public let isManual: Bool

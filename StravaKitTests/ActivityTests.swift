@@ -19,7 +19,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
         expect(activity.utcOffset) == -28800
-        expect(activity.map.summaryPolyline) == "cetewLja@zYcG"
+        expect(activity.map?.summaryPolyline) == "cetewLja@zYcG"
         expect(activity.isStaticTrainer) == false
         expect(activity.isCommute) == false
         expect(activity.isManual) == false
@@ -44,7 +44,7 @@ final class ActivityTests: XCTestCase {
         expect(activity.localStartDate) == "2013-08-23T17:04:12Z"
         expect(activity.localTimeZone) == "(GMT-08:00) America/Los_Angeles"
         expect(activity.utcOffset) == -28800
-        expect(activity.map.summaryPolyline).to(beNil())
+        expect(activity.map?.summaryPolyline).to(beNil())
         expect(activity.isStaticTrainer) == false
         expect(activity.isCommute) == false
         expect(activity.isManual) == false
