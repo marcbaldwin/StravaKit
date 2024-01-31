@@ -16,3 +16,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 Pods/
+
+# OSX
+.DS_Store
+
+.bundle/
+vendor/
