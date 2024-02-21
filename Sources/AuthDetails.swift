@@ -1,3 +1,5 @@
+import Foundation
+
 public struct AuthDetails: Codable, Equatable, Hashable {
 
     public let refreshToken: String

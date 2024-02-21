@@ -1,3 +1,5 @@
+import Foundation
+
 public enum StravaError: LocalizedError, Equatable {
 
     // Unexpected error from authenticate

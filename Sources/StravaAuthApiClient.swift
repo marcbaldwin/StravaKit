@@ -1,4 +1,5 @@
 import Alamofire
+import Foundation
 import RxSwift
 
 public final class StravaAuthApiClient {
