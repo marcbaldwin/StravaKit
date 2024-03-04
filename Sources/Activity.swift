@@ -1,6 +1,6 @@
 import CoreLocation
 
-public struct Activity: Codable, Equatable, Hashable {
+public struct Activity: Codable, Equatable, Hashable, Identifiable {
 
     public let id: Int64
     public let name: String

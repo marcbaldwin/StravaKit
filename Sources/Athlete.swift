@@ -1,4 +1,4 @@
-public struct Athlete: Codable, Equatable, Hashable {
+public struct Athlete: Codable, Equatable, Hashable, Identifiable {
 
     public let id: Int64
     public let firstName: String
