@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = 'StravaKit'
-  s.version       = '4.4.0'
+  s.version       = '4.6.0'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.summary       = 'RxSwift Strava client'
   s.homepage      = 'https://github.com/marcbaldwin/StravaKit'
