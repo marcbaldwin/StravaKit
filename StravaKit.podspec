@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage      = 'https://github.com/marcbaldwin/StravaKit'
   s.author        = { 'marcbaldwin' => 'marc.baldwin88@gmail.com' }
   s.source        = { :git => "https://github.com/marcbaldwin/StravaKit.git", :tag => s.version }
-  s.source_files  = 'StravaKit/*.swift'
+  s.source_files  = 'Sources/*.swift'
   s.ios.deployment_target = '12.0'
   s.framework     = 'Foundation'
   s.dependency      'Alamofire', '~> 5'
