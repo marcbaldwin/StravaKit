@@ -23,6 +23,8 @@ public enum StravaError: LocalizedError, Equatable {
     // 4XX Other
     case apiUnexpectedError(ErrorResponse)
 
+    case noResponse
+
     public var errorDescription: String? {
         switch self {
         case let .authUnexpectedError(code):
@@ -45,6 +47,9 @@ public enum StravaError: LocalizedError, Equatable {
 
         case let .apiUnexpectedError(response):
             return "Unexpected error, response: '\(response.description)'"
+
+        case .noResponse:
+            return "No response"
         }
     }
 }

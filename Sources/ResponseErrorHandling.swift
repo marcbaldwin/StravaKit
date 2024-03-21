@@ -1,34 +1,65 @@
 import Foundation
+import Alamofire
 
-extension HTTPDataResponse {
-
-    func decode<T: Decodable>(type: T.Type) throws -> T {
-        return try JSONDecoder().decode(type, from: try decode())
+func dataRequest(
+    url: URL,
+    method: HTTPMethod,
+    parameters: Parameters,
+    headers: HTTPHeaders? = nil
+) async throws -> Data {
+    try await withCheckedThrowingContinuation { continuation in
+        Alamofire.Session.default
+            .request(
+                url,
+                method: method,
+                parameters: parameters,
+                headers: headers
+            )
+            .responseData { response in
+                do {
+                    let data = try response.decode()
+                    continuation.resume(returning: data)
+                } catch let error {
+                    continuation.resume(throwing: error)
+                }
+            }
     }
+}
+
+extension AFDataResponse<Data> {
 
     func decode() throws -> Data {
-        if statusCode >= 200 && statusCode <= 299 {
-            return data
-        }
+        guard let response else { throw StravaError.noResponse }
 
-        let error = try JSONDecoder().decode(ErrorResponse.self, from: data)
 
-        if statusCode == 400 {
-            if error.errors.contains(where: { error in error.resource == ErrorResponse.refreshToken }) {
-                throw StravaError.refreshTokenInvalid
-            } else {
-                throw StravaError.badRequest(error)
+        switch(result) {
+        case let .success(data):
+            if response.statusCode >= 200 && response.statusCode <= 299 {
+                return data
             }
-        }
 
-        if statusCode == 401 {
-            throw StravaError.accessTokenInvalid
-        }
+            let error = try JSONDecoder().decode(ErrorResponse.self, from: data)
 
-        if statusCode == 403 {
-            throw StravaError.forbidden(error)
-        }
+            if response.statusCode == 400 {
+                if error.errors.contains(where: { error in error.resource == ErrorResponse.refreshToken }) {
+                    throw StravaError.refreshTokenInvalid
+                } else {
+                    throw StravaError.badRequest(error)
+                }
+            }
 
-        throw StravaError.apiUnexpectedError(error)
+            if response.statusCode == 401 {
+                throw StravaError.accessTokenInvalid
+            }
+
+            if response.statusCode == 403 {
+                throw StravaError.forbidden(error)
+            }
+
+            throw StravaError.apiUnexpectedError(error)
+
+        case let .failure(error):
+            throw error
+        }
     }
 }
